@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>migrate-t_paciente</name>
+    <name>migrate-t_adulto</name>
     <description />
     <extended_description />
     <trans_version />
@@ -427,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017/09/12 07:04:43.048</created_date>
+    <created_date>2017/09/18 11:29:58.595</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017/09/12 07:04:43.048</modified_date>
+    <modified_date>2017/09/18 11:29:58.595</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -547,309 +547,289 @@
   </connection>
   <order>
     <hop>
-      <from>Fetch date to import to</from>
+      <from>Load from t_paciente</from>
       <to>Fetch First Encounter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Fetch First Encounter</from>
-      <to>Has First Encounter</to>
+      <to>Fetch Profission</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Has First Encounter</from>
-      <to>Map Encounter Type</to>
+      <from>Fetch Profission</from>
+      <to>Academic Level</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Has First Encounter</from>
-      <to>Fetch Program Inscription</to>
+      <from>Academic Level</from>
+      <to>Map Academic Level</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Program Inscription</from>
-      <to>Calculate Age in Days</to>
+      <from>Map Academic Level</from>
+      <to>Fetch Conviventes</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Add constants</from>
-      <to>Age in Years</to>
+      <from>Fetch Conviventes</from>
+      <to>Fetch Marital Status</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Age in Years</from>
-      <to>Calculate Encounter Type</to>
+      <from>Fetch Marital Status</from>
+      <to>Map Matiral Status</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Map Encounter Type</from>
-      <to>Select Values</to>
+      <from>Map Matiral Status</from>
+      <to>Numero de Conjugues</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculate Encounter Type</from>
-      <to>Select Values 2</to>
+      <from>Numero de Conjugues</from>
+      <to>Fetch Serologia HIV Conjugue</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Load Initial Patient Data</from>
-      <to>Has Birthdate</to>
+      <from>Fetch Serologia HIV Conjugue</from>
+      <to>Map Sorologia HIV Conjugue</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Has Birthdate</from>
-      <to>Fetch date to import to</to>
+      <from>Map Sorologia HIV Conjugue</from>
+      <to>Fetch Process Number</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Has Birthdate</from>
-      <to>Error: Missing Birthdate</to>
+      <from>Fetch Process Number</from>
+      <to>Fetch Process Number Conjugue</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculate Age in Days</from>
-      <to>Birthdate prior to Program Start Date</to>
+      <from>Fetch Process Number Conjugue</from>
+      <to>Fetch Number of Sons</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Birthdate prior to Program Start Date</from>
-      <to>Add constants</to>
+      <from>Fetch Number of Sons</from>
+      <to>Fetch Number of Tested Sons</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Birthdate prior to Program Start Date</from>
-      <to>Error: Birthdate After Program startdate</to>
+      <from>Fetch Number of Tested Sons</from>
+      <to>Fetch Number of HIV+ Sons</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Add constants 2</from>
-      <to>Calculate Age in Years</to>
+      <from>Fetch Number of HIV+ Sons</from>
+      <to>Fetch Tabaco</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculate Age in Days 2</from>
-      <to>Birthdate prior Start Date</to>
+      <from>Fetch Tabaco</from>
+      <to>Map Tabaco</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Birthdate prior Start Date</from>
-      <to>Add constants 2</to>
+      <from>Map Tabaco</from>
+      <to>Fetch Alcool</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Birthdate prior Start Date</from>
-      <to>Error: Birthdate After Startdate</to>
+      <from>Fetch Alcool</from>
+      <to>Map Alcool</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculate Age in Years</from>
-      <to>Calculate Age in Months</to>
+      <from>Map Alcool</from>
+      <to>Fetch Drugs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculate Age in Months</from>
-      <to>Database join</to>
+      <from>Fetch Drugs</from>
+      <to>Map Drugs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database join</from>
-      <to>Has NID</to>
+      <from>Map Drugs</from>
+      <to>Fetch Number of Partners</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Has NID</from>
-      <to>Error: Patient without NID</to>
+      <from>Fetch Number of Partners</from>
+      <to>Map Number of Partners</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Has NID</from>
-      <to>Fetch HDD</to>
+      <from>Map Number of Partners</from>
+      <to>Fetch Antecedentes Ginecologicos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch HDD</from>
-      <to>Fetch Provenience Concept Code</to>
+      <from>Fetch Antecedentes Ginecologicos</from>
+      <to>Fetch Ultima Menstruacao</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Provenience Concept Code</from>
-      <to>Map Provinience Code</to>
+      <from>Fetch Ultima Menstruacao</from>
+      <to>Fetch Aborto</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Map Provinience Code</from>
-      <to>Fetch Provenience Location</to>
+      <from>Fetch Aborto</from>
+      <to>Map Aborto</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Provenience Location</from>
-      <to>Fetch Provenience Code 2</to>
+      <from>Map Aborto</from>
+      <to>Fetch PTV</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Provenience Code 2</from>
-      <to>NVL (prov_code1, prov_code2)</to>
+      <from>Fetch PTV</from>
+      <to>Map PTV</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>NVL (prov_code1, prov_code2)</from>
-      <to>Fetch TARV Start Date</to>
+      <from>Map PTV</from>
+      <to>Fetch PTV Quais</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch TARV Start Date</from>
-      <to>Fetch Tarv Exit Details</to>
+      <from>Fetch PTV Quais</from>
+      <to>Map PTV Quais</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Tarv Exit Details</from>
-      <to>Map Tarv Exit State Description</to>
+      <from>Map PTV Quais</from>
+      <to>Fetch Gravida</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Map Tarv Exit State Description</from>
-      <to>Fetch Non Tarv Exit Details</to>
+      <from>Fetch Gravida</from>
+      <to>Map Gravida</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Non Tarv Exit Details</from>
-      <to>Map Non Tarv Exit State Description</to>
+      <from>Map Gravida</from>
+      <to>Fetch Semana Gestacao</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Map Non Tarv Exit State Description</from>
-      <to>Fetch Death Details</to>
+      <from>Fetch Semana Gestacao</from>
+      <to>Fetch Previsao Parto</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Death Details</from>
-      <to>NVL Intermediate Status</to>
+      <from>Fetch Previsao Parto</from>
+      <to>Fetch Data Parto</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>NVL Intermediate Status</from>
-      <to>NVL Intermediate Date</to>
+      <from>Fetch Data Parto</from>
+      <to>Fetch Tipo Aleitamento</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>NVL Intermediate Date</from>
-      <to>NVL Final Status</to>
+      <from>Fetch Tipo Aleitamento</from>
+      <to>Map Tipo Aleitamento</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>NVL Final Status</from>
-      <to>NVL Final Date</to>
+      <from>Map Tipo Aleitamento</from>
+      <to>Fetch Alergia Medicamentos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>NVL Final Date</from>
-      <to>Fetch Diagnose Date</to>
+      <from>Fetch Alergia Medicamentos</from>
+      <to>Map Alergia Medicamentos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Diagnose Date</from>
-      <to>Fetch Counseled</to>
+      <from>Map Alergia Medicamentos</from>
+      <to>Fetch Alergia Medicamentos Quais</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Counseled</from>
-      <to>Fetch Outreach Details</to>
+      <from>Fetch Alergia Medicamentos Quais</from>
+      <to>Fetch Antecedentes TARV</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Outreach Details</from>
-      <to>Fetch Regimen Code</to>
+      <from>Fetch Antecedentes TARV</from>
+      <to>Fetch Antecedentes TARV Quais</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Regimen Code</from>
-      <to>Map Regimen Codes</to>
+      <from>Fetch Antecedentes TARV Quais</from>
+      <to>Fetch Exposicao Acidental</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Map Regimen Codes</from>
-      <to>Fetch Stage</to>
+      <from>Fetch Exposicao Acidental</from>
+      <to>Map Exposicao Acidental</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Stage</from>
-      <to>Map Stage</to>
+      <from>Map Exposicao Acidental</from>
+      <to>Fetch Tipo de Acidente</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Map Stage</from>
-      <to>Fetch TB</to>
+      <from>Fetch Tipo de Acidente</from>
+      <to>Map Tipo Acidente</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch TB</from>
-      <to>Fetch Home Care Details</to>
+      <from>Map Tipo Acidente</from>
+      <to>Tipo Acidente NVL</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Home Care Details</from>
-      <to>Fetch Education/Prevention</to>
+      <from>Tipo Acidente NVL</from>
+      <to>Fetch Geleira</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Education/Prevention</from>
-      <to>Fetch Pre-Tarv Transfer</to>
+      <from>Fetch Geleira</from>
+      <to>Fetch Eletricidade</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Pre-Tarv Transfer</from>
-      <to>Fetch Tarv Transfer </to>
+      <from>Fetch Eletricidade</from>
+      <to>Fetch Orientacao Sexual</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Tarv Transfer </from>
-      <to>NVL From Other HF</to>
+      <from>Fetch Orientacao Sexual</from>
+      <to>Map Orientacao Sexual</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>NVL From Other HF</from>
-      <to>Fetch Eligibility Date</to>
+      <from>Map Orientacao Sexual</from>
+      <to>Fetch Historia Actual</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Eligibility Date</from>
-      <to>Fetch APSS Availability</to>
+      <from>Fetch Historia Actual</from>
+      <to>Fetch Hipotese Diagnostico</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch APSS Availability</from>
-      <to>Fetch APSS Contact Type</to>
+      <from>Fetch Hipotese Diagnostico</from>
+      <to>Fetch Karnovsky</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch APSS Contact Type</from>
-      <to>Fetch Informed Condition</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Fetch Informed Condition</from>
-      <to>Fetch Partner Condition</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Fetch Partner Condition</from>
-      <to>Save to T_PACIENTE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select Values 2</from>
-      <to>Calculate Age in Days 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select Values</from>
-      <to>Calculate Age in Days 2</to>
+      <from>Fetch Karnovsky</from>
+      <to>Save to t_adulto</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Add constants</name>
-    <type>Constant</type>
+    <name>Academic Level</name>
+    <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -858,20 +838,21 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <fields>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_text as academic_level_code from obs
+where obs.voided = false
+  and obs.concept_id = 1443
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
       <field>
-        <name>days_in_year</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>365</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <name>encounter_id</name>
+        <type>Number</type>
       </field>
-    </fields>
+    </parameter>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -880,14 +861,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>656</yloc>
+      <xloc>528</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Add constants 2</name>
-    <type>Constant</type>
+    <name>Fetch Aborto</name>
+    <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -896,32 +877,60 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <fields>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded aborto_code from obs
+where obs.voided = false
+  and obs.concept_id = 1667
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
       <field>
-        <name>days_in_year</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>365</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <name>encounter_id</name>
+        <type>Number</type>
       </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1360</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Alcool</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded alcool_code from obs
+where obs.voided = false
+  and obs.concept_id = 1603
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
       <field>
-        <name>days_in_month</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>30</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <name>encounter_id</name>
+        <type>Number</type>
       </field>
-    </fields>
+    </parameter>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -930,14 +939,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
-      <yloc>144</yloc>
+      <xloc>304</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Age in Years</name>
-    <type>Calculator</type>
+    <name>Fetch Alergia Medicamentos</name>
+    <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -946,21 +955,21 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <calculation>
-      <field_name>age_in_years</field_name>
-      <calc_type>DIVIDE</calc_type>
-      <field_a>age_in_days</field_a>
-      <field_b>days_in_year</field_b>
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded alergia_medicamentos_code from obs
+where obs.voided = false
+  and obs.concept_id = 1601
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -969,294 +978,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>656</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Birthdate prior Start Date</name>
-    <type>FilterRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <send_true_to>Add constants 2</send_true_to>
-    <send_false_to>Error: Birthdate After Startdate</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>age_in_days</leftvalue>
-        <function>&gt;</function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>0</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>####0;-####0</mask>
-        </value>
-      </condition>
-    </compare>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1328</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Birthdate prior to Program Start Date</name>
-    <type>FilterRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <send_true_to>Add constants</send_true_to>
-    <send_false_to>Error: Birthdate After Program startdate</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>age_in_days</leftvalue>
-        <function>&gt;</function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>0</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>####0;-####0</mask>
-        </value>
-      </condition>
-    </compare>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculate Age in Days</name>
-    <type>Calculator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <calculation>
-      <field_name>age_in_days</field_name>
-      <calc_type>DATE_DIFF</calc_type>
-      <field_a>program_date</field_a>
-      <field_b>birthdate</field_b>
-      <field_c />
-      <value_type>None</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
+      <xloc>432</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Calculate Age in Days 2</name>
-    <type>Calculator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <calculation>
-      <field_name>age_in_days</field_name>
-      <calc_type>DATE_DIFF</calc_type>
-      <field_a>patient_start_date</field_a>
-      <field_b>birthdate</field_b>
-      <field_c />
-      <value_type>None</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1104</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculate Age in Months</name>
-    <type>Calculator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <calculation>
-      <field_name>age_in_months</field_name>
-      <calc_type>DIVIDE</calc_type>
-      <field_a>age_in_days</field_a>
-      <field_b>days_in_month</field_b>
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1872</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculate Age in Years</name>
-    <type>Calculator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <calculation>
-      <field_name>age_in_years</field_name>
-      <calc_type>DIVIDE</calc_type>
-      <field_a>age_in_days</field_a>
-      <field_b>days_in_year</field_b>
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1696</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculate Encounter Type</name>
-    <type>NumberRange</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <inputField>age_in_years</inputField>
-    <outputField>patient_type</outputField>
-    <fallBackValue>unknown</fallBackValue>
-    <rules>
-      <rule>
-        <lower_bound>0.0</lower_bound>
-        <upper_bound>14.0</upper_bound>
-        <value>Crianca</value>
-      </rule>
-      <rule>
-        <lower_bound>15.0</lower_bound>
-        <upper_bound>1.7976931348623157E308</upper_bound>
-        <value>Adulto</value>
-      </rule>
-    </rules>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>704</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Database join</name>
+    <name>Fetch Alergia Medicamentos Quais</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1268,17 +996,16 @@
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select patient_identifier.identifier as nid from patient_identifier
-where patient_identifier.voided = false
-  and patient_identifier.identifier_type = 2
-  and patient_identifier.patient_id = ?
-order by patient_identifier.patient_identifier_id desc
+    <sql>select obs.value_text alergia_medicamentos_quais from obs
+where obs.voided = false
+  and obs.concept_id = 1517
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -1290,125 +1017,13 @@ order by patient_identifier.patient_identifier_id desc
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1872</xloc>
-      <yloc>256</yloc>
+      <xloc>848</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Error: Birthdate After Program startdate</name>
-    <type>Abort</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <row_threshold>0</row_threshold>
-    <message>Paciente com data de nascimento posterior a data de inicio do programa</message>
-    <always_log_rows>Y</always_log_rows>
-    <abort_with_error>Y</abort_with_error>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Error: Birthdate After Startdate</name>
-    <type>Abort</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <row_threshold>0</row_threshold>
-    <message>Paciente com data de nascimento posterior a data de abertura</message>
-    <always_log_rows>Y</always_log_rows>
-    <abort_with_error>Y</abort_with_error>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1328</xloc>
-      <yloc>16</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Error: Missing Birthdate</name>
-    <type>Abort</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <row_threshold>0</row_threshold>
-    <message>Paciente sem data de nascimento</message>
-    <always_log_rows>Y</always_log_rows>
-    <abort_with_error>Y</abort_with_error>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Error: Patient without NID</name>
-    <type>Abort</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <row_threshold>0</row_threshold>
-    <message>Paciente sem NID</message>
-    <always_log_rows>Y</always_log_rows>
-    <abort_with_error>Y</abort_with_error>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1744</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch APSS Availability</name>
+    <name>Fetch Antecedentes Ginecologicos</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1420,17 +1035,16 @@ order by patient_identifier.patient_identifier_id desc
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select 'SIM' as apss_availability from encounter
-where encounter.voided = false
-  and encounter.encounter_type in (34,24,19)
-  and encounter.form_id in (131,132)
-  and encounter.patient_id = ?
+    <sql>select obs.value_text antecedentes_ginecologicos from obs
+where obs.voided = false
+  and obs.concept_id = 1394
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -1442,13 +1056,13 @@ where encounter.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>864</yloc>
+      <xloc>1136</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch APSS Contact Type</name>
+    <name>Fetch Antecedentes TARV</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1460,144 +1074,16 @@ where encounter.voided = false
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select if(obs.value_coded=6307,'CONTACTO TELEFONICO','VISITA DOMICILIARIA') as apss_contact_type from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where encounter.voided = false
-  and encounter.encounter_type in (34,24,19)
-  and encounter.form_id in (131,132)
-  and obs.voided = false
-  and obs.concept_id = 6309
-  and encounter.patient_id = ?
+    <sql>select case obs.value_coded when 1065 then true when 1066 then false else null end antecedentes_tarv from obs
+where obs.voided = false
+  and obs.concept_id = 1192
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1296</xloc>
-      <yloc>864</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Counseled</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select exists (select * from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where obs.concept_id = 1463
-  and encounter.encounter_type in (5, 7)
-  and obs.voided = false
-  and encounter.voided = false
-  and obs.value_coded=1065
-  and encounter.patient_id = ?) as counseled
-</sql>
-    <outer_join>Y</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>912</xloc>
-      <yloc>672</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Death Details</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select 'OBITO' as death_state_desc, person.death_date from person
-where person.voided = false
-  and person.dead = true
-  and person.person_id = ?
-</sql>
-    <outer_join>Y</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1888</xloc>
-      <yloc>672</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Diagnose Date</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select obs.value_datetime diagnose_date from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where obs.concept_id = 6123
-  and encounter.encounter_type in (5, 7)
-  and obs.voided = false
-  and encounter.voided = false
-  and encounter.patient_id = ?
-</sql>
-    <outer_join>Y</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -1610,12 +1096,12 @@ where obs.concept_id = 6123
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>672</yloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Education/Prevention</name>
+    <name>Fetch Antecedentes TARV Quais</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1627,20 +1113,20 @@ where obs.concept_id = 6123
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select if(obs.value_coded=1065,'SIM','NAO') education_prevention from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where encounter.voided = false
-  and encounter.encounter_type in (6,9)
-  and obs.voided = false
-  and obs.concept_id = 1714
-  and encounter.patient_id = ?
-order by obs.obs_datetime desc
+    <sql>select concept_name.name antecedentes_tarv_quais from obs
+join concept_name on (concept_name.concept_id = obs.value_coded)
+where obs.voided = false
+  and concept_name.voided = false
+  and obs.concept_id = 1087
+  and concept_name.locale='pt' 
+  and concept_name.concept_name_type='FULLY_SPECIFIED'
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -1652,13 +1138,13 @@ order by obs.obs_datetime desc
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>864</yloc>
+      <xloc>1360</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Eligibility Date</name>
+    <name>Fetch Conviventes</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1670,20 +1156,16 @@ order by obs.obs_datetime desc
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select obs.value_datetime as eligibility_date from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where encounter.voided = false
-  and encounter.encounter_type in (6,9)
-  and obs.voided = false
-  and obs.concept_id = 6278
-  and encounter.patient_id = ?
-order by obs.obs_datetime desc
+    <sql>select obs.value_numeric conviventes_number from obs
+where obs.voided = false
+  and obs.concept_id = 1656
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -1695,8 +1177,164 @@ order by obs.obs_datetime desc
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
-      <yloc>864</yloc>
+      <xloc>800</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Data Parto</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_datetime data_parto from obs
+where obs.voided = false
+  and obs.concept_id = 5599
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Drugs</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded drug_code from obs
+where obs.voided = false
+  and obs.concept_id = 105
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Eletricidade</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select case obs.value_coded when 1065 then true when 1066 then false else null end eletricidade from obs
+where obs.voided = false
+  and obs.concept_id = 5609
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Exposicao Acidental</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded exposicao_acidental_code from obs
+where obs.voided = false
+  and obs.concept_id = 1687
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1360</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1713,12 +1351,133 @@ order by obs.obs_datetime desc
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select encounter.encounter_datetime first_encounter_date, encounter.encounter_type first_encounter_type from encounter
-where encounter.patient_id = ?
-  and encounter.encounter_datetime &lt;= ?
-  and encounter.voided = false
-  and encounter.encounter_type in (5, 7)
-order by encounter.encounter_datetime
+    <sql>select encounter.encounter_id from encounter
+where encounter.voided = false
+  and encounter.encounter_type = 5
+  and encounter.encounter_datetime = ?
+  and encounter.patient_id = ?
+order by encounter.encounter_id
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>dataabertura</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>patient_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Geleira</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select case obs.value_coded when 1065 then true when 1066 then false else null end geleira from obs
+where obs.voided = false
+  and obs.concept_id = 1455
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Gravida</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded gravida_code from obs
+where obs.voided = false
+  and obs.concept_id = 1982
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Hipotese Diagnostico</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_text hipotese_diagnostico from obs
+where obs.voided = false
+  and obs.concept_id = 1649
+  and obs.person_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
@@ -1727,9 +1486,44 @@ order by encounter.encounter_datetime
         <name>patient_id</name>
         <type>Number</type>
       </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>640</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Historia Actual</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_text historia_actual from obs
+where obs.voided = false
+  and obs.concept_id = 1671
+  and obs.person_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
       <field>
-        <name>date_to_import_to</name>
-        <type>Date</type>
+        <name>patient_id</name>
+        <type>Number</type>
       </field>
     </parameter>
     <cluster_schema />
@@ -1741,43 +1535,12 @@ order by encounter.encounter_datetime
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>432</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch HDD</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>Export DB</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select t_hdd.hdd, t_hdd.location_id, t_hdd.distrito from t_hdd</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1600</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Home Care Details</name>
+    <name>Fetch Karnovsky</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1789,15 +1552,10 @@ order by encounter.encounter_datetime
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select obs.obs_datetime as home_care_date, true as home_care_performed from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where encounter.voided = false
-  and encounter.encounter_type in (6,9)
-  and obs.voided = false
-  and obs.concept_id in (6287,1272)
-  and obs.value_coded=1699
-  and encounter.patient_id = ?
-order by obs.obs_datetime desc
+    <sql>select obs.value_numeric karnovsky from obs
+where obs.voided = false
+  and obs.concept_id = 5283
+  and obs.person_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
@@ -1815,13 +1573,13 @@ order by obs.obs_datetime desc
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>864</yloc>
+      <xloc>432</xloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Informed Condition</name>
+    <name>Fetch Marital Status</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1833,20 +1591,16 @@ order by obs.obs_datetime desc
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select if(obs.value_coded=1065,'SIM','NAO') as informed_condition from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where encounter.voided = false
-  and encounter.encounter_type in (34,24,19)
-  and encounter.form_id in (131,132)
-  and obs.voided = false
-  and obs.concept_id = 1048
-  and encounter.patient_id = ?
+    <sql>select obs.value_coded marital_status_code from obs
+where obs.voided = false
+  and obs.concept_id = 1054
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -1858,13 +1612,13 @@ where encounter.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1488</xloc>
-      <yloc>864</yloc>
+      <xloc>944</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Non Tarv Exit Details</name>
+    <name>Fetch Number of HIV+ Sons</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1876,20 +1630,16 @@ where encounter.voided = false
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select patient_state.state non_tarv_exit_state_code, patient_state.start_date non_tarv_exit_date from patient_program
-join patient_state on (patient_state.patient_program_id = patient_program.patient_program_id)
-where patient_program.voided = false
-  and patient_state.voided = false
-  and patient_state.state in (2,3,5)
-  and patient_program.program_id = 1
-  and patient_state.end_date is null
-  and patient_program.patient_id = ?
+    <sql>select obs.value_numeric number_hivp_of_sons from obs
+where obs.voided = false
+  and obs.concept_id = 1453
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -1901,13 +1651,13 @@ where patient_program.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1712</xloc>
-      <yloc>528</yloc>
+      <xloc>96</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Outreach Details</name>
+    <name>Fetch Number of Partners</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1919,16 +1669,16 @@ where patient_program.voided = false
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select encounter.encounter_datetime date_outreach_accepted, case when encounter.encounter_datetime is not null then true else false end as accepted_outreach from encounter
-where encounter.voided = false
-  and encounter.encounter_type = 30
-  and encounter.patient_id = ?
+    <sql>select obs.value_coded number_of_partners_code from obs
+where obs.voided = false
+  and obs.concept_id = 1666
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -1940,13 +1690,13 @@ where encounter.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>752</yloc>
+      <xloc>752</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Partner Condition</name>
+    <name>Fetch Number of Sons</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -1958,61 +1708,16 @@ where encounter.voided = false
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select if(obs.value_coded=703,'POSITIVO',if(obs.value_coded=664,'NEGATIVO','NAO SABE')) as partner_condition from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where encounter.voided = false
-  and encounter.encounter_type in (34,24,19)
-  and encounter.form_id in (131,132)
-  and obs.voided = false
-  and obs.concept_id = 2074
-  and encounter.patient_id = ?
+    <sql>select obs.value_numeric number_of_sons from obs
+where obs.voided = false
+  and obs.concept_id = 5573
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1664</xloc>
-      <yloc>864</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Pre-Tarv Transfer</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select 'SIM' as tranfered_from_pre_tarv from patient_program
-join patient_state on (patient_state.patient_program_id = patient_program.patient_program_id)
-where patient_program.voided = false
-  and patient_state.voided = false
-  and patient_program.program_id = 1
-  and patient_state.state = 28
-  and patient_program.patient_id = ?</sql>
-    <outer_join>Y</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -2025,50 +1730,12 @@ where patient_program.voided = false
     </remotesteps>
     <GUI>
       <xloc>464</xloc>
-      <yloc>864</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Program Inscription</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select patient_program.date_enrolled program_date from patient_program
-where patient_program.program_id = 1
-  and patient_program.voided = false
-  and patient_program.patient_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Provenience Code 2</name>
+    <name>Fetch Number of Tested Sons</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -2080,19 +1747,16 @@ where patient_program.program_id = 1
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select obs.value_text provenience_code_2 from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where obs.concept_id = 1627
-  and encounter.encounter_type in (5, 7)
-  and obs.voided = false
-  and encounter.voided = false
-  and encounter.patient_id = ?
+    <sql>select obs.value_numeric number_tested_of_sons from obs
+where obs.voided = false
+  and obs.concept_id = 1452
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -2104,13 +1768,13 @@ where obs.concept_id = 1627
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>416</yloc>
+      <xloc>288</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Provenience Concept Code</name>
+    <name>Fetch Orientacao Sexual</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -2122,19 +1786,16 @@ where obs.concept_id = 1627
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select obs.value_coded provenience_concept_code from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where obs.concept_id = 1594
-  and encounter.encounter_type in (5, 7)
-  and obs.voided = false
-  and encounter.voided = false
-  and encounter.patient_id = ?
+    <sql>select obs.value_coded orientacao_sexual_code from obs
+where obs.voided = false
+  and obs.concept_id = 1375
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -2146,13 +1807,13 @@ where obs.concept_id = 1594
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1424</xloc>
-      <yloc>256</yloc>
+      <xloc>288</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Provenience Location</name>
+    <name>Fetch PTV</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -2164,173 +1825,16 @@ where obs.concept_id = 1594
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select obs.value_text provenience_location from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where obs.concept_id = 1626
-  and encounter.encounter_type in (5, 7)
-  and obs.voided = false
-  and encounter.voided = false
-  and encounter.patient_id = ?
+    <sql>select obs.value_coded ptv_code from obs
+where obs.voided = false
+  and obs.concept_id = 1466
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1056</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Regimen Code</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select obs.value_coded as regimen_code from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where encounter.voided = false
-  and encounter.encounter_type = 18
-  and obs.voided = false
-  and obs.concept_id = 1088
-  and encounter.patient_id = ?
-order by encounter.encounter_datetime desc
-</sql>
-    <outer_join>Y</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Stage</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select obs.value_coded as stage_code from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where encounter.voided = false
-  and encounter.encounter_type in (6,9)
-  and obs.voided = false
-  and obs.concept_id = 5356
-  and encounter.patient_id = ?
-order by encounter.encounter_datetime desc
-</sql>
-    <outer_join>Y</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch TARV Start Date</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select min(date) as tarv_start_date, CASE WHEN min(date) is not null THEN true ELSE false END as in_tarv
-from (
-select encounter.patient_id, encounter.encounter_datetime date from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where obs.concept_id = 1255
-  and encounter.encounter_type in (18,6,9)
-  and obs.value_coded = 1256
-  and obs.voided = false
-  and encounter.voided = false
-  and encounter.patient_id = ?
-union
-select encounter.patient_id, obs.value_datetime date from encounter
-join obs on (obs.encounter_id = encounter.encounter_id)
-where obs.concept_id = 1190
-  and encounter.encounter_type in (18,6,9)
-  and obs.value_datetime is not null
-  and obs.voided = false
-  and encounter.voided = false
-  and encounter.patient_id = ?
-union
-select patient_program.patient_id, patient_program.date_enrolled date from patient_program
-where patient_program.voided = false
-  and patient_program.program_id = 2
-  and patient_program.patient_id = ?
-) patient_encounter
-</sql>
-    <outer_join>Y</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-      <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-      <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -2343,50 +1847,12 @@ where patient_program.voided = false
     </remotesteps>
     <GUI>
       <xloc>1136</xloc>
-      <yloc>528</yloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch TB</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select exists(select * from patient_program
-where patient_program.voided = false
-  and patient_program.program_id = 5
-  and patient_program.patient_id = ?) as tb_treatment</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Tarv Exit Details</name>
+    <name>Fetch PTV Quais</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -2398,20 +1864,16 @@ where patient_program.voided = false
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select patient_state.state tarv_exit_state_code, patient_state.start_date tarv_exit_date from patient_program
-join patient_state on (patient_state.patient_program_id = patient_program.patient_program_id)
-where patient_program.voided = false
-  and patient_state.voided = false
-  and patient_state.state in (7,8,9,10)
-  and patient_program.program_id = 2
-  and patient_state.end_date is null
-  and patient_program.patient_id = ?
+    <sql>select obs.value_coded ptv_quais_code from obs
+where obs.voided = false
+  and obs.concept_id = 1504
+  and obs.encounter_id = ?
 </sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -2423,13 +1885,13 @@ where patient_program.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1312</xloc>
-      <yloc>528</yloc>
+      <xloc>944</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Tarv Transfer </name>
+    <name>Fetch Previsao Parto</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -2441,18 +1903,16 @@ where patient_program.voided = false
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
     <rowlimit>1</rowlimit>
-    <sql>select 'SIM' as tranfered_from_tarv from patient_program
-join patient_state on (patient_state.patient_program_id = patient_program.patient_program_id)
-where patient_program.voided = false
-  and patient_state.voided = false
-  and patient_program.program_id = 2
-  and patient_state.state = 29
-  and patient_program.patient_id = ?</sql>
+    <sql>select obs.value_datetime previsao_parto from obs
+where obs.voided = false
+  and obs.concept_id = 1600
+  and obs.encounter_id = ?
+</sql>
     <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
-        <name>patient_id</name>
+        <name>encounter_id</name>
         <type>Number</type>
       </field>
     </parameter>
@@ -2464,13 +1924,13 @@ where patient_program.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
-      <yloc>864</yloc>
+      <xloc>320</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch date to import to</name>
+    <name>Fetch Process Number</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -2481,11 +1941,214 @@ where patient_program.voided = false
       <schema_name />
     </partitioning>
     <connection>EMR (OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select property_value as date_to_import_to from global_property where global_property.property='esaudemetadata.dateToImportTo'</sql>
-    <outer_join>N</outer_join>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_text process_number from obs
+where obs.voided = false
+  and obs.concept_id = 1450
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Process Number Conjugue</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_text process_number_conjungue from obs
+where obs.voided = false
+  and obs.concept_id = 1451
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Profission</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_text as profission_code from obs
+where obs.voided = false
+  and obs.concept_id = 1459
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Semana Gestacao</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_numeric semana_gestacao from obs
+where obs.voided = false
+  and obs.concept_id = 1279
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Serologia HIV Conjugue</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded serologia_hiv_conjugue_code from obs
+where obs.voided = false
+  and obs.concept_id = 1449
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1264</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Fetch Tabaco</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded tabaco_code from obs
+where obs.voided = false
+  and obs.concept_id = 1388
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
     </parameter>
     <cluster_schema />
     <remotesteps>
@@ -2496,13 +2159,13 @@ where patient_program.voided = false
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>304</yloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Has Birthdate</name>
-    <type>FilterRows</type>
+    <name>Fetch Tipo Aleitamento</name>
+    <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -2511,16 +2174,21 @@ where patient_program.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>Fetch date to import to</send_true_to>
-    <send_false_to>Error: Missing Birthdate</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>birthdate</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue />
-      </condition>
-    </compare>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded tipo_aleitamento_code from obs
+where obs.voided = false
+  and obs.concept_id = 1151
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -2530,13 +2198,13 @@ where patient_program.voided = false
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>176</yloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Has First Encounter</name>
-    <type>FilterRows</type>
+    <name>Fetch Tipo de Acidente</name>
+    <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -2545,16 +2213,21 @@ where patient_program.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>Map Encounter Type</send_true_to>
-    <send_false_to>Fetch Program Inscription</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>first_encounter_date</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue />
-      </condition>
-    </compare>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_coded tipo_acidente_code, obs.value_text tipo_acidente_text from obs
+where obs.voided = false
+  and obs.concept_id in (1061,1435)
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -2563,14 +2236,14 @@ where patient_program.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>304</yloc>
+      <xloc>1008</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Has NID</name>
-    <type>FilterRows</type>
+    <name>Fetch Ultima Menstruacao</name>
+    <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -2579,16 +2252,21 @@ where patient_program.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>Fetch HDD</send_true_to>
-    <send_false_to>Error: Patient without NID</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>nid</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue />
-      </condition>
-    </compare>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_datetime ultima_menstruacao from obs
+where obs.voided = false
+  and obs.concept_id = 1465
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -2597,29 +2275,25 @@ where patient_program.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1744</xloc>
-      <yloc>256</yloc>
+      <xloc>1360</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Load Initial Patient Data</name>
+    <name>Load from t_paciente</name>
     <type>TableInput</type>
     <description />
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <sql>select patient.patient_id, person.gender, person.birthdate from patient
-join person on (patient.patient_id = person.person_id)
-where patient.voided = false
-  and person.voided = false
-
-</sql>
+    <connection>Export DB</connection>
+    <sql>select t_paciente.patient_id, t_paciente.nid, t_paciente.dataabertura from t_paciente
+where t_paciente.tipopaciente = 'Adulto'</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -2634,12 +2308,12 @@ where patient.voided = false
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>64</yloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Map Encounter Type</name>
+    <name>Map Aborto</name>
     <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
@@ -2649,17 +2323,17 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <field_to_use>first_encounter_type</field_to_use>
-    <target_field>patient_type</target_field>
+    <field_to_use>aborto_code</field_to_use>
+    <target_field>aborto_desc</target_field>
     <non_match_default />
     <fields>
       <field>
-        <source_value>5</source_value>
-        <target_value>Adulto</target_value>
+        <source_value>50</source_value>
+        <target_value>1</target_value>
       </field>
       <field>
-        <source_value>7</source_value>
-        <target_value>Crianca</target_value>
+        <source_value>1066</source_value>
+        <target_value>0</target_value>
       </field>
     </fields>
     <cluster_schema />
@@ -2670,13 +2344,13 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>48</yloc>
+      <xloc>1248</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Map Non Tarv Exit State Description</name>
+    <name>Map Academic Level</name>
     <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
@@ -2686,315 +2360,37 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <field_to_use>non_tarv_exit_state_code</field_to_use>
-    <target_field>non_tarv_exit_state_desc</target_field>
-    <non_match_default />
-    <fields>
-      <field>
-        <source_value>2</source_value>
-        <target_value>ABANDONO</target_value>
-      </field>
-      <field>
-        <source_value>3</source_value>
-        <target_value>TRANSFERIDO PARA</target_value>
-      </field>
-      <field>
-        <source_value>5</source_value>
-        <target_value>OBITO</target_value>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1888</xloc>
-      <yloc>576</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Map Provinience Code</name>
-    <type>ValueMapper</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <field_to_use>provenience_concept_code</field_to_use>
-    <target_field>provenience_code_1</target_field>
-    <non_match_default>Outro</non_match_default>
-    <fields>
-      <field>
-        <source_value>1595</source_value>
-        <target_value>ENF</target_value>
-      </field>
-      <field>
-        <source_value>1596</source_value>
-        <target_value>C.ext</target_value>
-      </field>
-      <field>
-        <source_value>1414</source_value>
-        <target_value>PNCTL</target_value>
-      </field>
-      <field>
-        <source_value>1597</source_value>
-        <target_value>ATS/UATS</target_value>
-      </field>
-      <field>
-        <source_value>1987</source_value>
-        <target_value>SAAJ</target_value>
-      </field>
-      <field>
-        <source_value>1598</source_value>
-        <target_value>PTV</target_value>
-      </field>
-      <field>
-        <source_value>1872</source_value>
-        <target_value>CCR</target_value>
-      </field>
-      <field>
-        <source_value>1275</source_value>
-        <target_value>CS</target_value>
-      </field>
-      <field>
-        <source_value>1984</source_value>
-        <target_value>HG/HR</target_value>
-      </field>
-      <field>
-        <source_value>1599</source_value>
-        <target_value>CP</target_value>
-      </field>
-      <field>
-        <source_value>1932</source_value>
-        <target_value>Referido por 1 PS</target_value>
-      </field>
-      <field>
-        <source_value>1387</source_value>
-        <target_value>Laboratorio</target_value>
-      </field>
-      <field>
-        <source_value>1386</source_value>
-        <target_value>Clinica Movel</target_value>
-      </field>
-      <field>
-        <source_value>1044</source_value>
-        <target_value>ENF. PEDIATRIA</target_value>
-      </field>
-      <field>
-        <source_value>6304</source_value>
-        <target_value>ATIP</target_value>
-      </field>
-      <field>
-        <source_value>1986</source_value>
-        <target_value>SEGUNDO SITIO</target_value>
-      </field>
-      <field>
-        <source_value>6245</source_value>
-        <target_value>ATSC</target_value>
-      </field>
-      <field>
-        <source_value>1699</source_value>
-        <target_value>CD</target_value>
-      </field>
-      <field>
-        <source_value>2160</source_value>
-        <target_value>Busca Consentida</target_value>
-      </field>
-      <field>
-        <source_value>6288</source_value>
-        <target_value>SMI</target_value>
-      </field>
-      <field>
-        <source_value>5484</source_value>
-        <target_value>Apoio Alimentar</target_value>
-      </field>
-      <field>
-        <source_value>6155</source_value>
-        <target_value>PMT</target_value>
-      </field>
-      <field>
-        <source_value>6303</source_value>
-        <target_value>VBG</target_value>
-      </field>
-      <field>
-        <source_value>6305</source_value>
-        <target_value>OBC</target_value>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1232</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Map Regimen Codes</name>
-    <type>ValueMapper</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <field_to_use>regimen_code</field_to_use>
-    <target_field>regimen_desc</target_field>
+    <field_to_use>academic_level_code</field_to_use>
+    <target_field>academic_level_desc</target_field>
     <non_match_default>OUTRO</non_match_default>
     <fields>
       <field>
-        <source_value>1651</source_value>
-        <target_value>AZT+3TC+NVP</target_value>
+        <source_value>1445</source_value>
+        <target_value>NENHUM</target_value>
       </field>
       <field>
-        <source_value>6324</source_value>
-        <target_value>TDF+3TC+EFV</target_value>
+        <source_value>1446</source_value>
+        <target_value>PRIMARIO</target_value>
       </field>
       <field>
-        <source_value>1703</source_value>
-        <target_value>AZT+3TC+EFV</target_value>
+        <source_value>1447</source_value>
+        <target_value>SECUNDARIO BASICO</target_value>
       </field>
       <field>
-        <source_value>6243</source_value>
-        <target_value>TDF+3TC+NVP</target_value>
+        <source_value>6124</source_value>
+        <target_value>TECNICO BASICO</target_value>
       </field>
       <field>
-        <source_value>6103</source_value>
-        <target_value>D4T+3TC+LPV/r</target_value>
+        <source_value>1444</source_value>
+        <target_value>SECUNDARIO MEDIO</target_value>
       </field>
       <field>
-        <source_value>792</source_value>
-        <target_value>D4T+3TC+NVP</target_value>
+        <source_value>6125</source_value>
+        <target_value>TECNICO MEDIO</target_value>
       </field>
       <field>
-        <source_value>1827</source_value>
-        <target_value>D4T+3TC+EFV</target_value>
-      </field>
-      <field>
-        <source_value>6102</source_value>
-        <target_value>D4T+3TC+ABC</target_value>
-      </field>
-      <field>
-        <source_value>6116</source_value>
-        <target_value>AZT+3TC+ABC</target_value>
-      </field>
-      <field>
-        <source_value>6108</source_value>
-        <target_value>TDF+3TC+LPV/r(2ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6100</source_value>
-        <target_value>AZT+3TC+LPV/r(2ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6329</source_value>
-        <target_value>TDF+3TC+RAL+DRV/r (3ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6330</source_value>
-        <target_value>AZT+3TC+RAL+DRV/r (3ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6105</source_value>
-        <target_value>ABC+3TC+NVP</target_value>
-      </field>
-      <field>
-        <source_value>6102</source_value>
-        <target_value>D4T+3TC+ABC</target_value>
-      </field>
-      <field>
-        <source_value>6325</source_value>
-        <target_value>D4T+3TC+ABC+LPV/r (2ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6326</source_value>
-        <target_value>AZT+3TC+ABC+LPV/r (2ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6327</source_value>
-        <target_value>D4T+3TC+ABC+EFV (2ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6328</source_value>
-        <target_value>AZT+3TC+ABC+EFV (2ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6109</source_value>
-        <target_value>AZT+DDI+LPV/r (2ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6329</source_value>
-        <target_value>TDF+3TC+RAL+DRV/r (3ª Linha)</target_value>
-      </field>
-      <field>
-        <source_value>6110</source_value>
-        <target_value>D4T20+3TC+NVP</target_value>
-      </field>
-      <field>
-        <source_value>1702</source_value>
-        <target_value>AZT+3TC+NFV</target_value>
-      </field>
-      <field>
-        <source_value>817</source_value>
-        <target_value>AZT+3TC+ABC</target_value>
-      </field>
-      <field>
-        <source_value>6104</source_value>
-        <target_value>ABC+3TC+EFV</target_value>
-      </field>
-      <field>
-        <source_value>6106</source_value>
-        <target_value>ABC+3TC+LPV/r</target_value>
-      </field>
-      <field>
-        <source_value>6244</source_value>
-        <target_value>AZT+3TC+RTV</target_value>
-      </field>
-      <field>
-        <source_value>1700</source_value>
-        <target_value>AZT+DDl+NFV</target_value>
-      </field>
-      <field>
-        <source_value>633</source_value>
-        <target_value>EFV</target_value>
-      </field>
-      <field>
-        <source_value>625</source_value>
-        <target_value>D4T</target_value>
-      </field>
-      <field>
-        <source_value>631</source_value>
-        <target_value>NVP</target_value>
-      </field>
-      <field>
-        <source_value>628</source_value>
-        <target_value>3TC</target_value>
-      </field>
-      <field>
-        <source_value>6107</source_value>
-        <target_value>TDF+AZT+3TC+LPV/r</target_value>
-      </field>
-      <field>
-        <source_value>6236</source_value>
-        <target_value>D4T+DDI+RTV-IP</target_value>
-      </field>
-      <field>
-        <source_value>1701</source_value>
-        <target_value>ABC+DDI+NFV</target_value>
+        <source_value>1448</source_value>
+        <target_value>UNIVERSITARIO</target_value>
       </field>
     </fields>
     <cluster_schema />
@@ -3005,13 +2401,13 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>752</yloc>
+      <xloc>656</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Map Stage</name>
+    <name>Map Alcool</name>
     <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
@@ -3021,70 +2417,17 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <field_to_use>stage_code</field_to_use>
-    <target_field>stage_desc</target_field>
-    <non_match_default>OUTRO</non_match_default>
-    <fields>
-      <field>
-        <source_value>1204</source_value>
-        <target_value>I</target_value>
-      </field>
-      <field>
-        <source_value>1205</source_value>
-        <target_value>II</target_value>
-      </field>
-      <field>
-        <source_value>1206</source_value>
-        <target_value>III</target_value>
-      </field>
-      <field>
-        <source_value>1207</source_value>
-        <target_value>IV</target_value>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Map Tarv Exit State Description</name>
-    <type>ValueMapper</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <field_to_use>tarv_exit_state_code</field_to_use>
-    <target_field>tarv_exit_state_desc</target_field>
+    <field_to_use>alcool_code</field_to_use>
+    <target_field>alcool_desc</target_field>
     <non_match_default />
     <fields>
       <field>
-        <source_value>7</source_value>
-        <target_value>TRANSFERIDO PARA</target_value>
+        <source_value>1065</source_value>
+        <target_value>1</target_value>
       </field>
       <field>
-        <source_value>8</source_value>
-        <target_value>SUSPENDER</target_value>
-      </field>
-      <field>
-        <source_value>9</source_value>
-        <target_value>ABANDONO</target_value>
-      </field>
-      <field>
-        <source_value>10</source_value>
-        <target_value>OBITO</target_value>
+        <source_value>1066</source_value>
+        <target_value>0</target_value>
       </field>
     </fields>
     <cluster_schema />
@@ -3095,14 +2438,133 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
+      <xloc>416</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Map Alergia Medicamentos</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>alergia_medicamentos_code</field_to_use>
+    <target_field>alergia_medicamentos_desc</target_field>
+    <non_match_default>OUTRO</non_match_default>
+    <fields>
+      <field>
+        <source_value>1065</source_value>
+        <target_value>SIM</target_value>
+      </field>
+      <field>
+        <source_value>1066</source_value>
+        <target_value>NAO</target_value>
+      </field>
+      <field>
+        <source_value>1067</source_value>
+        <target_value>NAO SABE</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Map Drugs</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>drug_code</field_to_use>
+    <target_field>drug_desc</target_field>
+    <non_match_default />
+    <fields>
+      <field>
+        <source_value>1065</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>1066</source_value>
+        <target_value>0</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Map Exposicao Acidental</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>exposicao_acidental_code</field_to_use>
+    <target_field>exposicao_acidental_desc</target_field>
+    <non_match_default>OUTRO</non_match_default>
+    <fields>
+      <field>
+        <source_value>1443</source_value>
+        <target_value>SIM</target_value>
+      </field>
+      <field>
+        <source_value>1066</source_value>
+        <target_value>NAO</target_value>
+      </field>
+      <field>
+        <source_value>1457</source_value>
+        <target_value>NAO SABE</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
       <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>NVL (prov_code1, prov_code2)</name>
-    <type>Calculator</type>
+    <name>Map Gravida</name>
+    <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -3111,21 +2573,113 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <calculation>
-      <field_name>provenience_code</field_name>
-      <calc_type>NVL</calc_type>
-      <field_a>provenience_code_1</field_a>
-      <field_b>provenience_code_2</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
+    <field_to_use>gravida_code</field_to_use>
+    <target_field>gravida_desc</target_field>
+    <non_match_default />
+    <fields>
+      <field>
+        <source_value>44</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>1066</source_value>
+        <target_value>0</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Map Matiral Status</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>marital_status_code</field_to_use>
+    <target_field>marital_status_desc</target_field>
+    <non_match_default>OUTRO</non_match_default>
+    <fields>
+      <field>
+        <source_value>1057</source_value>
+        <target_value>S</target_value>
+      </field>
+      <field>
+        <source_value>5555</source_value>
+        <target_value>C</target_value>
+      </field>
+      <field>
+        <source_value>1059</source_value>
+        <target_value>V</target_value>
+      </field>
+      <field>
+        <source_value>1060</source_value>
+        <target_value>U</target_value>
+      </field>
+      <field>
+        <source_value>1056</source_value>
+        <target_value>SEPARADO</target_value>
+      </field>
+      <field>
+        <source_value>1058</source_value>
+        <target_value>DIVORCIADO</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Map Number of Partners</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>number_of_partners_code</field_to_use>
+    <target_field>number_of_partners_desc</target_field>
+    <non_match_default>4</non_match_default>
+    <fields>
+      <field>
+        <source_value>1662</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>1663</source_value>
+        <target_value>2</target_value>
+      </field>
+      <field>
+        <source_value>1664</source_value>
+        <target_value>3</target_value>
+      </field>
+    </fields>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3135,13 +2689,54 @@ where patient.voided = false
     </remotesteps>
     <GUI>
       <xloc>928</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Map Orientacao Sexual</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>orientacao_sexual_code</field_to_use>
+    <target_field>orientacao_sexual_desc</target_field>
+    <non_match_default>OUTRO</non_match_default>
+    <fields>
+      <field>
+        <source_value>1376</source_value>
+        <target_value>HETEROSSEXUAL</target_value>
+      </field>
+      <field>
+        <source_value>1377</source_value>
+        <target_value>HOMOSSEXUAL</target_value>
+      </field>
+      <field>
+        <source_value>1378</source_value>
+        <target_value>BISSEXUAL</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
       <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>NVL Final Date</name>
-    <type>Calculator</type>
+    <name>Map PTV</name>
+    <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -3150,21 +2745,19 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <calculation>
-      <field_name>final_exit_date</field_name>
-      <calc_type>NVL</calc_type>
-      <field_a>intermediate_exit_date</field_a>
-      <field_b>death_date</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
+    <field_to_use>ptv_code</field_to_use>
+    <target_field>ptv_desc</target_field>
+    <non_match_default />
+    <fields>
+      <field>
+        <source_value>1065</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>1066</source_value>
+        <target_value>0</target_value>
+      </field>
+    </fields>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3173,14 +2766,14 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
-      <yloc>672</yloc>
+      <xloc>1040</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>NVL Final Status</name>
-    <type>Calculator</type>
+    <name>Map PTV Quais</name>
+    <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -3189,21 +2782,39 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <calculation>
-      <field_name>final_state_desc</field_name>
-      <calc_type>NVL</calc_type>
-      <field_a>intermediate_state_desc</field_a>
-      <field_b>death_state_desc</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
+    <field_to_use>ptv_quais_code</field_to_use>
+    <target_field>ptv_quais_desc</target_field>
+    <non_match_default>OUTRO</non_match_default>
+    <fields>
+      <field>
+        <source_value>631</source_value>
+        <target_value>NVP</target_value>
+      </field>
+      <field>
+        <source_value>797</source_value>
+        <target_value>AZT</target_value>
+      </field>
+      <field>
+        <source_value>792</source_value>
+        <target_value>D4T+3TC+NVP</target_value>
+      </field>
+      <field>
+        <source_value>1800</source_value>
+        <target_value>TARV</target_value>
+      </field>
+      <field>
+        <source_value>1801</source_value>
+        <target_value>AZT+NVP</target_value>
+      </field>
+      <field>
+        <source_value>630</source_value>
+        <target_value>AZT+3TC</target_value>
+      </field>
+      <field>
+        <source_value>628</source_value>
+        <target_value>3TC</target_value>
+      </field>
+    </fields>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3212,14 +2823,14 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1360</xloc>
-      <yloc>672</yloc>
+      <xloc>832</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>NVL From Other HF</name>
-    <type>Calculator</type>
+    <name>Map Sorologia HIV Conjugue</name>
+    <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -3228,21 +2839,23 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <calculation>
-      <field_name>transfer_other_hf</field_name>
-      <calc_type>NVL</calc_type>
-      <field_a>tranfered_from_pre_tarv</field_a>
-      <field_b>tranfered_from_tarv</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
+    <field_to_use>serologia_hiv_conjugue_code</field_to_use>
+    <target_field>serologia_hiv_conjugue_desc</target_field>
+    <non_match_default>OUTRO</non_match_default>
+    <fields>
+      <field>
+        <source_value>1169</source_value>
+        <target_value>POSITIVO</target_value>
+      </field>
+      <field>
+        <source_value>1066</source_value>
+        <target_value>NEGATIVO</target_value>
+      </field>
+      <field>
+        <source_value>1457</source_value>
+        <target_value>SEM INFORMACAO</target_value>
+      </field>
+    </fields>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3251,14 +2864,14 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>864</yloc>
+      <xloc>1056</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>NVL Intermediate Date</name>
-    <type>Calculator</type>
+    <name>Map Tabaco</name>
+    <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -3267,21 +2880,19 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <calculation>
-      <field_name>intermediate_exit_date</field_name>
-      <calc_type>NVL</calc_type>
-      <field_a>tarv_exit_date</field_a>
-      <field_b>non_tarv_exit_date</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
+    <field_to_use>tabaco_code</field_to_use>
+    <target_field>tabaco_desc</target_field>
+    <non_match_default />
+    <fields>
+      <field>
+        <source_value>1065</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>1066</source_value>
+        <target_value>0</target_value>
+      </field>
+    </fields>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3290,14 +2901,14 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1520</xloc>
-      <yloc>672</yloc>
+      <xloc>192</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>NVL Intermediate Status</name>
-    <type>Calculator</type>
+    <name>Map Tipo Acidente</name>
+    <type>ValueMapper</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -3306,21 +2917,31 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <calculation>
-      <field_name>intermediate_state_desc</field_name>
-      <calc_type>NVL</calc_type>
-      <field_a>tarv_exit_state_desc</field_a>
-      <field_b>non_tarv_exit_state_desc</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
+    <field_to_use>tipo_acidente_code</field_to_use>
+    <target_field>tipo_acidente_desc</target_field>
+    <non_match_default />
+    <fields>
+      <field>
+        <source_value>181</source_value>
+        <target_value>PICA COM AGULHA CONTAMINADA</target_value>
+      </field>
+      <field>
+        <source_value>5564</source_value>
+        <target_value>SUSPEITO DE UM PARCEIRO CONTAMINADO</target_value>
+      </field>
+      <field>
+        <source_value>1508</source_value>
+        <target_value>EXTRACAO DENTARIA</target_value>
+      </field>
+      <field>
+        <source_value>1507</source_value>
+        <target_value>INJECCAO</target_value>
+      </field>
+      <field>
+        <source_value>1509</source_value>
+        <target_value>ESCARIFICACAO</target_value>
+      </field>
+    </fields>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3329,13 +2950,93 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1712</xloc>
-      <yloc>672</yloc>
+      <xloc>848</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Save to T_PACIENTE</name>
+    <name>Map Tipo Aleitamento</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>tipo_aleitamento_code</field_to_use>
+    <target_field>tipo_aleitamento_desc</target_field>
+    <non_match_default>OUTRO</non_match_default>
+    <fields>
+      <field>
+        <source_value>5526</source_value>
+        <target_value>MATERNO</target_value>
+      </field>
+      <field>
+        <source_value>5254</source_value>
+        <target_value>ARTIFICIAL</target_value>
+      </field>
+      <field>
+        <source_value>6046</source_value>
+        <target_value>MISTO</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Numero de Conjugues</name>
+    <type>DBJoin</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>EMR (OpenMRS)</connection>
+    <rowlimit>1</rowlimit>
+    <sql>select obs.value_numeric number_of_parners from obs
+where obs.voided = false
+  and obs.concept_id = 5557
+  and obs.encounter_id = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>encounter_id</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1264</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Save to t_adulto</name>
     <type>TableOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -3347,7 +3048,7 @@ where patient.voided = false
     </partitioning>
     <connection>Export DB</connection>
     <schema />
-    <table>t_paciente</table>
+    <table>t_adulto</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -3364,132 +3065,164 @@ where patient.voided = false
     <return_field />
     <fields>
       <field>
-        <column_name>hdd</column_name>
-        <stream_name>hdd</stream_name>
-      </field>
-      <field>
-        <column_name>dataabertura</column_name>
-        <stream_name>patient_start_date</stream_name>
+        <column_name>patient_id</column_name>
+        <stream_name>patient_id</stream_name>
       </field>
       <field>
         <column_name>nid</column_name>
         <stream_name>nid</stream_name>
       </field>
       <field>
-        <column_name>sexo</column_name>
-        <stream_name>gender</stream_name>
+        <column_name>encounter_id</column_name>
+        <stream_name>encounter_id</stream_name>
       </field>
       <field>
-        <column_name>datanasc</column_name>
-        <stream_name>birthdate</stream_name>
+        <column_name>codprofissao</column_name>
+        <stream_name>profission_code</stream_name>
       </field>
       <field>
-        <column_name>idade</column_name>
-        <stream_name>age_in_years</stream_name>
+        <column_name>codnivel</column_name>
+        <stream_name>academic_level_desc</stream_name>
       </field>
       <field>
-        <column_name>meses</column_name>
-        <stream_name>age_in_months</stream_name>
+        <column_name>nrconviventes</column_name>
+        <stream_name>conviventes_number</stream_name>
       </field>
       <field>
-        <column_name>coddistrito</column_name>
-        <stream_name>distrito</stream_name>
+        <column_name>codestadocivil</column_name>
+        <stream_name>marital_status_desc</stream_name>
       </field>
       <field>
-        <column_name>codproveniencia</column_name>
-        <stream_name>provenience_code</stream_name>
+        <column_name>nrconjuges</column_name>
+        <stream_name>number_of_parners</stream_name>
       </field>
       <field>
-        <column_name>designacaoprov</column_name>
-        <stream_name>provenience_location</stream_name>
+        <column_name>serologiaHivconjuge</column_name>
+        <stream_name>serologia_hiv_conjugue_desc</stream_name>
       </field>
       <field>
-        <column_name>emtarv</column_name>
-        <stream_name>in_tarv</stream_name>
+        <column_name>Nrprocesso</column_name>
+        <stream_name>process_number</stream_name>
       </field>
       <field>
-        <column_name>datainiciotarv</column_name>
-        <stream_name>tarv_start_date</stream_name>
+        <column_name>outrosparceiros</column_name>
+        <stream_name>process_number_conjungue</stream_name>
       </field>
       <field>
-        <column_name>codestado</column_name>
-        <stream_name>final_state_desc</stream_name>
+        <column_name>nrfilhos</column_name>
+        <stream_name>number_of_sons</stream_name>
       </field>
       <field>
-        <column_name>datasaidatarv</column_name>
-        <stream_name>final_exit_date</stream_name>
+        <column_name>nrfilhostestados</column_name>
+        <stream_name>number_tested_of_sons</stream_name>
       </field>
       <field>
-        <column_name>datadiagnostico</column_name>
-        <stream_name>diagnose_date</stream_name>
+        <column_name>nrfilhoshiv</column_name>
+        <stream_name>number_hivp_of_sons</stream_name>
       </field>
       <field>
-        <column_name>aconselhado</column_name>
-        <stream_name>counseled</stream_name>
+        <column_name>tabaco</column_name>
+        <stream_name>tabaco_desc</stream_name>
       </field>
       <field>
-        <column_name>referidocd</column_name>
-        <stream_name>home_care_performed</stream_name>
+        <column_name>alcool</column_name>
+        <stream_name>alcool_desc</stream_name>
       </field>
       <field>
-        <column_name>DataCD</column_name>
-        <stream_name>home_care_date</stream_name>
+        <column_name>droga</column_name>
+        <stream_name>drug_desc</stream_name>
       </field>
       <field>
-        <column_name>estadiooms</column_name>
-        <stream_name>stage_desc</stream_name>
+        <column_name>nrparceiros</column_name>
+        <stream_name>number_of_partners_desc</stream_name>
       </field>
       <field>
-        <column_name>aceitabuscaactiva</column_name>
-        <stream_name>accepted_outreach</stream_name>
+        <column_name>antecedentesgenelogicos</column_name>
+        <stream_name>antecedentes_ginecologicos</stream_name>
       </field>
       <field>
-        <column_name>dataaceitabuscaactiva</column_name>
-        <stream_name>date_outreach_accepted</stream_name>
+        <column_name>datamestruacao</column_name>
+        <stream_name>ultima_menstruacao</stream_name>
       </field>
       <field>
-        <column_name>Educacaoprevencao</column_name>
-        <stream_name>education_prevention</stream_name>
+        <column_name>aborto</column_name>
+        <stream_name>aborto_desc</stream_name>
       </field>
       <field>
-        <column_name>transfOutraUs</column_name>
-        <stream_name>transfer_other_hf</stream_name>
+        <column_name>ptv</column_name>
+        <stream_name>ptv_desc</stream_name>
       </field>
       <field>
-        <column_name>dataElegibilidadeInicioTarv</column_name>
-        <stream_name>eligibility_date</stream_name>
+        <column_name>ptvquais</column_name>
+        <stream_name>ptv_quais_desc</stream_name>
       </field>
       <field>
-        <column_name>apssDisponivel</column_name>
-        <stream_name>apss_availability</stream_name>
+        <column_name>gravida</column_name>
+        <stream_name>gravida_desc</stream_name>
       </field>
       <field>
-        <column_name>apssFormaContacto</column_name>
-        <stream_name>apss_contact_type</stream_name>
+        <column_name>semanagravidez</column_name>
+        <stream_name>semana_gestacao</stream_name>
       </field>
       <field>
-        <column_name>apssconheceestadoparceiro</column_name>
-        <stream_name>partner_condition</stream_name>
+        <column_name>dataprevistoparto</column_name>
+        <stream_name>previsao_parto</stream_name>
       </field>
       <field>
-        <column_name>apssQuemInformouSeroestado</column_name>
-        <stream_name>informed_condition</stream_name>
+        <column_name>dataparto</column_name>
+        <stream_name>data_parto</stream_name>
       </field>
       <field>
-        <column_name>patient_id</column_name>
-        <stream_name>patient_id</stream_name>
+        <column_name>tipoaleitamento</column_name>
+        <stream_name>tipo_aleitamento_desc</stream_name>
       </field>
       <field>
-        <column_name>codregime</column_name>
-        <stream_name>regimen_desc</stream_name>
+        <column_name>Alergiamedicamentos</column_name>
+        <stream_name>alergia_medicamentos_desc</stream_name>
       </field>
       <field>
-        <column_name>emtratamentotb</column_name>
-        <stream_name>tb_treatment</stream_name>
+        <column_name>Alergiasquais</column_name>
+        <stream_name>alergia_medicamentos_quais</stream_name>
       </field>
       <field>
-        <column_name>tipopaciente</column_name>
-        <stream_name>patient_type</stream_name>
+        <column_name>Antecedentestarv</column_name>
+        <stream_name>antecedentes_tarv</stream_name>
+      </field>
+      <field>
+        <column_name>antecedentesquais</column_name>
+        <stream_name>antecedentes_tarv_quais</stream_name>
+      </field>
+      <field>
+        <column_name>exposicaoacidental</column_name>
+        <stream_name>exposicao_acidental_desc</stream_name>
+      </field>
+      <field>
+        <column_name>tipoacidente</column_name>
+        <stream_name>tipo_acidente</stream_name>
+      </field>
+      <field>
+        <column_name>electricidade</column_name>
+        <stream_name>eletricidade</stream_name>
+      </field>
+      <field>
+        <column_name>geleira</column_name>
+        <stream_name>geleira</stream_name>
+      </field>
+      <field>
+        <column_name>sexualidade</column_name>
+        <stream_name>orientacao_sexual_desc</stream_name>
+      </field>
+      <field>
+        <column_name>historiaactual</column_name>
+        <stream_name>historia_actual</stream_name>
+      </field>
+      <field>
+        <column_name>hipotesedediagnostico</column_name>
+        <stream_name>hipotese_diagnostico</stream_name>
+      </field>
+      <field>
+        <column_name>codkarnosfsky</column_name>
+        <stream_name>karnovsky</stream_name>
       </field>
     </fields>
     <cluster_schema />
@@ -3500,14 +3233,14 @@ where patient.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1824</xloc>
-      <yloc>864</yloc>
+      <xloc>560</xloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select Values</name>
-    <type>SelectValues</type>
+    <name>Tipo Acidente NVL</name>
+    <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -3516,74 +3249,21 @@ where patient.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <name>patient_id</name>
-      </field>
-      <field>
-        <name>gender</name>
-      </field>
-      <field>
-        <name>birthdate</name>
-      </field>
-      <field>
-        <name>date_to_import_to</name>
-      </field>
-      <field>
-        <name>first_encounter_date</name>
-        <rename>patient_start_date</rename>
-      </field>
-      <field>
-        <name>patient_type</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select Values 2</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>patient_id</name>
-      </field>
-      <field>
-        <name>gender</name>
-      </field>
-      <field>
-        <name>birthdate</name>
-      </field>
-      <field>
-        <name>date_to_import_to</name>
-      </field>
-      <field>
-        <name>program_date</name>
-        <rename>patient_start_date</rename>
-      </field>
-      <field>
-        <name>patient_type</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <calculation>
+      <field_name>tipo_acidente</field_name>
+      <calc_type>NVL</calc_type>
+      <field_a>tipo_acidente_desc</field_a>
+      <field_b>tipo_acidente_text</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3593,7 +3273,7 @@ where patient.voided = false
     </remotesteps>
     <GUI>
       <xloc>704</xloc>
-      <yloc>416</yloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
