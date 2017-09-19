@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>migrate-t_mae</name>
+    <name>update-t_crianca-with-parents_ids</name>
     <description />
     <extended_description />
     <trans_version />
@@ -427,69 +427,14 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017/09/19 11:22:58.533</created_date>
+    <created_date>2017/09/19 12:50:51.465</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017/09/19 11:22:58.533</modified_date>
+    <modified_date>2017/09/19 12:50:51.465</modified_date>
     <key_for_session_key />
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>EMR (OpenMRS)</name>
-    <server>localhost</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>openmrs</database>
-    <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>STREAM_RESULTS</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <connection>
     <name>Export DB</name>
     <server>localhost</server>
@@ -548,52 +493,17 @@
   <order>
     <hop>
       <from>Load from t_crianca</from>
-      <to>With Concept 1477</to>
+      <to>Fetch Father ID</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>With Concept 1477</from>
-      <to>Fetch Age</to>
+      <from>Fetch Father ID</from>
+      <to>Fetch Mother</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fetch Age</from>
-      <to>Fetch Alive</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Fetch Alive</from>
-      <to>Fetch Sick</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Fetch Sick</from>
-      <to>Fetch Disease</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Fetch Disease</from>
-      <to>Fetch Profission</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Fetch Profission</from>
-      <to>Fetch HIV Status</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Fetch HIV Status</from>
-      <to>Value HIV Status</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Value HIV Status</from>
-      <to>Fetch In TARV</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Fetch In TARV</from>
-      <to>Save to t_mae</to>
+      <from>Fetch Mother</from>
+      <to>Update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -609,7 +519,7 @@
       <schema_name />
     </partitioning>
     <connection>Export DB</connection>
-    <sql>select t_crianca.patient_id, t_crianca.encounter_id from t_crianca</sql>
+    <sql>select t_crianca.encounter_id from t_crianca</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -623,13 +533,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>48</yloc>
+      <xloc>96</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>With Concept 1477</name>
+    <name>Fetch Father ID</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -639,13 +549,11 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR (OpenMRS)</connection>
+    <connection>Export DB</connection>
     <rowlimit>1</rowlimit>
-    <sql>select true has_concept_1477 from obs
-where obs.voided = false
-  and obs.concept_id = 1477
-  and obs.encounter_id = ?</sql>
-    <outer_join>N</outer_join>
+    <sql>select t_pai.idpai from t_pai
+where t_pai.encounter_id = ?</sql>
+    <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
@@ -662,12 +570,12 @@ where obs.voided = false
     </remotesteps>
     <GUI>
       <xloc>240</xloc>
-      <yloc>48</yloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fetch Age</name>
+    <name>Fetch Mother</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -677,13 +585,11 @@ where obs.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR (OpenMRS)</connection>
+    <connection>Export DB</connection>
     <rowlimit>1</rowlimit>
-    <sql>select obs.value_numeric age from obs
-where obs.voided = false
-  and obs.concept_id = 1478
-  and obs.encounter_id = ?</sql>
-    <outer_join>N</outer_join>
+    <sql>select t_mae.idmae from t_mae
+where t_mae.encounter_id = ?</sql>
+    <outer_join>Y</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
@@ -700,13 +606,13 @@ where obs.voided = false
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>48</yloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Save to t_mae</name>
-    <type>TableOutput</type>
+    <name>Update</name>
+    <type>Update</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -716,102 +622,29 @@ where obs.voided = false
       <schema_name />
     </partitioning>
     <connection>Export DB</connection>
-    <schema />
-    <table>t_mae</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>patient_id</column_name>
-        <stream_name>patient_id</stream_name>
-      </field>
-      <field>
-        <column_name>encounter_id</column_name>
-        <stream_name>encounter_id</stream_name>
-      </field>
-      <field>
-        <column_name>idade</column_name>
-        <stream_name>age</stream_name>
-      </field>
-      <field>
-        <column_name>vivo</column_name>
-        <stream_name>alive</stream_name>
-      </field>
-      <field>
-        <column_name>doente</column_name>
-        <stream_name>sick</stream_name>
-      </field>
-      <field>
-        <column_name>doenca</column_name>
-        <stream_name>disease</stream_name>
-      </field>
-      <field>
-        <column_name>codprofissao</column_name>
-        <stream_name>profission</stream_name>
-      </field>
-      <field>
-        <column_name>resultadohiv</column_name>
-        <stream_name>hiv_status_desc</stream_name>
-      </field>
-      <field>
-        <column_name>emtarv</column_name>
-        <stream_name>in_tarv</stream_name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1248</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Alive</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select case obs.value_coded
-					   when 1065 then 'SIM'
-					   when 1066 then 'NAO'
-					   when 1457 then 'SEM INFORMACAO'
-					   else null end alive from obs
-where obs.voided = false
-  and obs.concept_id = 1479
-  and obs.encounter_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
+    <skip_lookup>N</skip_lookup>
+    <commit>100</commit>
+    <use_batch>N</use_batch>
+    <error_ignored>N</error_ignored>
+    <ignore_flag_field />
+    <lookup>
+      <schema />
+      <table>t_crianca</table>
+      <key>
         <name>encounter_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
+        <field>encounter_id</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>idmae</name>
+        <rename>idmae</rename>
+      </value>
+      <value>
+        <name>idpai</name>
+        <rename>idpai</rename>
+      </value>
+    </lookup>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -820,255 +653,8 @@ where obs.voided = false
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Sick</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select case obs.value_coded
-					   when 1065 then 'SIM'
-					   when 1066 then 'NAO'
-					   when 1457 then 'SEM INFORMACAO'
-					   else null end sick from obs
-where obs.voided = false
-  and obs.concept_id = 1480
-  and obs.encounter_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>encounter_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Disease</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select obs.value_text disease from obs
-where obs.voided = false
-  and obs.concept_id = 1481
-  and obs.encounter_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>encounter_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch Profission</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select obs.value_text profission from obs
-where obs.voided = false
-  and obs.concept_id = 1482
-  and obs.encounter_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>encounter_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch HIV Status</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select obs.value_coded hiv_status_code from obs
-where obs.voided = false
-  and obs.concept_id = 1483
-  and obs.encounter_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>encounter_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Value HIV Status</name>
-    <type>ValueMapper</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <field_to_use>hiv_status_code</field_to_use>
-    <target_field>hiv_status_desc</target_field>
-    <non_match_default />
-    <fields>
-      <field>
-        <source_value>703</source_value>
-        <target_value>POSITIVO</target_value>
-      </field>
-      <field>
-        <source_value>664</source_value>
-        <target_value>NEGATIVO</target_value>
-      </field>
-      <field>
-        <source_value>1138</source_value>
-        <target_value>INDETERMINADO</target_value>
-      </field>
-      <field>
-        <source_value>1118</source_value>
-        <target_value>NAO FEZ</target_value>
-      </field>
-      <field>
-        <source_value>1457</source_value>
-        <target_value>SEM INFORMACAO</target_value>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1024</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fetch In TARV</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>1</rowlimit>
-    <sql>select case obs.value_coded
-					   when 1065 then 'SIM'
-					   when 1066 then 'NAO'
-					   when 1457 then 'SEM INFORMACAO'
-					   else null end in_tarv from obs
-where obs.voided = false
-  and obs.concept_id = 1484
-  and obs.encounter_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>encounter_id</name>
-        <type>Number</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1136</xloc>
-      <yloc>48</yloc>
+      <xloc>480</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -9,3 +9,21 @@ update patient_program set voided = true where patient_program.patient_id in (10
 update person set voided = true where person.person_id = 7634;
 update person set voided = true where person.person_id in (3386, 5021, 10160, 10278, 10440, 10488);
 update encounter set encounter.voided = true where encounter.encounter_id in (369280, 383732, 387915);
+
+update encounter set encounter.voided = true where encounter.encounter_id in (
+select id from (select min(e.encounter_id) id from encounter e
+  where e.voided = false
+    and e.encounter_type = 18
+  group by e.patient_id, e.encounter_datetime
+  having count(*) > 1) t);
+
+update encounter set encounter.voided = true where encounter.encounter_id in (
+select id from (select distinct encounter.encounter_id id from encounter
+join obs on (obs.encounter_id = encounter.encounter_id)
+where encounter.voided = false
+  and obs.voided = false
+  and encounter.encounter_type = 18
+  and obs.concept_id = 5096
+  and encounter.encounter_datetime >= obs.value_datetime
+) t);
+

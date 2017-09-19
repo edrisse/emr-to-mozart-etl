@@ -304,7 +304,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>48</xloc>
-      <yloc>160</yloc>
+      <yloc>208</yloc>
     </entry>
     <entry>
       <name>set-db-connection-variables</name>
@@ -340,7 +340,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>208</xloc>
-      <yloc>160</yloc>
+      <yloc>208</yloc>
     </entry>
     <entry>
       <name>migrate-t_hdd.ktr</name>
@@ -376,7 +376,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>368</xloc>
-      <yloc>160</yloc>
+      <yloc>208</yloc>
     </entry>
     <entry>
       <name>migrate-t_paciente</name>
@@ -412,7 +412,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>512</xloc>
-      <yloc>160</yloc>
+      <yloc>208</yloc>
     </entry>
     <entry>
       <name>migrate-t_seguimento</name>
@@ -448,7 +448,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>512</xloc>
-      <yloc>464</yloc>
+      <yloc>512</yloc>
     </entry>
     <entry>
       <name>migrate-t_seguimento-creating-missing-apss-seguimentos</name>
@@ -484,7 +484,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>800</xloc>
-      <yloc>464</yloc>
+      <yloc>512</yloc>
     </entry>
     <entry>
       <name>migrate-t_diagnosticoseguimento</name>
@@ -520,7 +520,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1328</xloc>
-      <yloc>368</yloc>
+      <yloc>416</yloc>
     </entry>
     <entry>
       <name>migrate-t_tratamentoseguimento</name>
@@ -556,7 +556,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1328</xloc>
-      <yloc>464</yloc>
+      <yloc>512</yloc>
     </entry>
     <entry>
       <name>migrate-t_infeccoesoportunisticaseguimento</name>
@@ -592,7 +592,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1328</xloc>
-      <yloc>560</yloc>
+      <yloc>608</yloc>
     </entry>
     <entry>
       <name>migrate-t_resultadoslaboratorio</name>
@@ -628,7 +628,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>32</yloc>
+      <yloc>80</yloc>
     </entry>
     <entry>
       <name>migrate-t_adulto</name>
@@ -664,7 +664,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>112</yloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
       <name>migrate-t_crianca</name>
@@ -696,11 +696,11 @@
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
-      <parallel>N</parallel>
+      <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>192</yloc>
+      <yloc>240</yloc>
     </entry>
     <entry>
       <name>migrate-t_mae.ktr</name>
@@ -735,8 +735,116 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>944</xloc>
-      <yloc>192</yloc>
+      <xloc>1024</xloc>
+      <yloc>208</yloc>
+    </entry>
+    <entry>
+      <name>migrate-t_pai</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/migrate-t_pai.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1024</xloc>
+      <yloc>288</yloc>
+    </entry>
+    <entry>
+      <name>update-t_crianca-with-parents_ids</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/update-t_crianca-with-parents_ids.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1264</xloc>
+      <yloc>256</yloc>
+    </entry>
+    <entry>
+      <name>migrate-t_tarv</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/migrate-t_tarv.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>704</xloc>
+      <yloc>32</yloc>
     </entry>
   </entries>
   <hops>
@@ -845,6 +953,42 @@
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>migrate-t_crianca</from>
+      <to>migrate-t_pai</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>migrate-t_pai</from>
+      <to>update-t_crianca-with-parents_ids</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>migrate-t_mae.ktr</from>
+      <to>update-t_crianca-with-parents_ids</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>migrate-t_paciente</from>
+      <to>migrate-t_tarv</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
