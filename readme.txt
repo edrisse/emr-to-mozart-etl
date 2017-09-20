@@ -1,3 +1,5 @@
+set global max_allowed_packet=512*1024*1024;
+
 insert into global_property (property, property_value, uuid) values ('esaudemetadata.hfc', '92001', '52128fe7-0aaa-4452-9c01-124bd5cd6517');
 insert into global_property (property, property_value, uuid) values ('esaudemetadata.dateToImportTo', '2017-02-10', '66536be7-3c3b-407d-97cd-d39d5253ff87');
 

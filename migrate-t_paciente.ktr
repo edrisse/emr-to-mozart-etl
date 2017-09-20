@@ -547,11 +547,6 @@
   </connection>
   <order>
     <hop>
-      <from>Fetch date to import to</from>
-      <to>Fetch First Encounter</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Fetch First Encounter</from>
       <to>Has First Encounter</to>
       <enabled>Y</enabled>
@@ -594,11 +589,6 @@
     <hop>
       <from>Load Initial Patient Data</from>
       <to>Has Birthdate</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Has Birthdate</from>
-      <to>Fetch date to import to</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -844,6 +834,11 @@
     <hop>
       <from>Select Values</from>
       <to>Calculate Age in Days 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Has Birthdate</from>
+      <to>Fetch First Encounter</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1715,7 +1710,6 @@ order by obs.obs_datetime desc
     <rowlimit>1</rowlimit>
     <sql>select encounter.encounter_datetime first_encounter_date, encounter.encounter_type first_encounter_type from encounter
 where encounter.patient_id = ?
-  and encounter.encounter_datetime &lt;= ?
   and encounter.voided = false
   and encounter.encounter_type in (5, 7)
 order by encounter.encounter_datetime
@@ -1726,10 +1720,6 @@ order by encounter.encounter_datetime
       <field>
         <name>patient_id</name>
         <type>Number</type>
-      </field>
-      <field>
-        <name>date_to_import_to</name>
-        <type>Date</type>
       </field>
     </parameter>
     <cluster_schema />
@@ -2470,37 +2460,6 @@ where patient_program.voided = false
     </GUI>
   </step>
   <step>
-    <name>Fetch date to import to</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select property_value as date_to_import_to from global_property where global_property.property='esaudemetadata.dateToImportTo'</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Has Birthdate</name>
     <type>FilterRows</type>
     <description />
@@ -2511,7 +2470,7 @@ where patient_program.voided = false
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>Fetch date to import to</send_true_to>
+    <send_true_to>Fetch First Encounter</send_true_to>
     <send_false_to>Error: Missing Birthdate</send_false_to>
     <compare>
       <condition>
@@ -3519,15 +3478,15 @@ where patient.voided = false
     <fields>
       <field>
         <name>patient_id</name>
+        <rename />
       </field>
       <field>
         <name>gender</name>
+        <rename />
       </field>
       <field>
         <name>birthdate</name>
-      </field>
-      <field>
-        <name>date_to_import_to</name>
+        <rename />
       </field>
       <field>
         <name>first_encounter_date</name>
@@ -3535,6 +3494,7 @@ where patient.voided = false
       </field>
       <field>
         <name>patient_type</name>
+        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -3565,15 +3525,15 @@ where patient.voided = false
     <fields>
       <field>
         <name>patient_id</name>
+        <rename />
       </field>
       <field>
         <name>gender</name>
+        <rename />
       </field>
       <field>
         <name>birthdate</name>
-      </field>
-      <field>
-        <name>date_to_import_to</name>
+        <rename />
       </field>
       <field>
         <name>program_date</name>
@@ -3581,6 +3541,7 @@ where patient.voided = false
       </field>
       <field>
         <name>patient_type</name>
+        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
