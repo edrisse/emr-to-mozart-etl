@@ -18,6 +18,12 @@ select id from (select min(e.encounter_id) id from encounter e
     and e.encounter_type = 18
   group by e.patient_id, e.encounter_datetime
   having count(*) > 1) t);
+update encounter set encounter.voided = true where encounter.encounter_id in (
+select id from (select min(e.encounter_id) id from encounter e
+  where e.voided = false
+    and e.encounter_type = 18
+  group by e.patient_id, e.encounter_datetime
+  having count(*) > 1) t);
 
 update encounter set encounter.voided = true where encounter.encounter_id in (
 select id from (select distinct encounter.encounter_id id from encounter
