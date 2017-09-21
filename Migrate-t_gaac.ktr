@@ -436,14 +436,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>EMR(OpenMRS)</name>
+    <name>EMR (OpenMRS)</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>openmrs</database>
     <port>3306</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10ccc2ffce</password>
+    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -491,14 +491,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>Export_DB</name>
+    <name>Export DB</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>export_db</database>
     <port>3306</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10ccc2ffce</password>
+    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -573,14 +573,13 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR(OpenMRS)</connection>
+    <connection>EMR (OpenMRS)</connection>
     <rowlimit>0</rowlimit>
     <sql>SELECT g.gaac_id, g.start_date, gaf.name affinity, g.date_crumbled, g.location_id 
 FROM openmrs.gaac g
 	INNER JOIN openmrs.gaac_affinity_type gaf ON g.affinity_type=gaf.gaac_affinity_type_id
 WHERE g.voided=0 
-  AND g.start_date&lt;=curdate()
-  AND g.focal_patient_id=?;</sql>
+  AND g.focal_patient_id=?</sql>
     <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
@@ -603,43 +602,6 @@ WHERE g.voided=0
     </GUI>
   </step>
   <step>
-    <name>Table input</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>N</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR(OpenMRS)</connection>
-    <sql>SELECT
-nid,
-datanasc,
-patient_id,
-dataabertura
-FROM t_paciente
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Database join 2</name>
     <type>DBJoin</type>
     <description />
@@ -650,7 +612,7 @@ FROM t_paciente
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>Export_DB</connection>
+    <connection>Export DB</connection>
     <rowlimit>0</rowlimit>
     <sql>SELECT t_hdd.HdD as hdd 
 FROM t_hdd 
@@ -677,6 +639,43 @@ WHERE t_hdd.location_id = ?</sql>
     </GUI>
   </step>
   <step>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>Export DB</connection>
+    <sql>SELECT
+nid,
+datanasc,
+patient_id,
+dataabertura
+FROM t_paciente
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Table output</name>
     <type>TableOutput</type>
     <description />
@@ -687,11 +686,11 @@ WHERE t_hdd.location_id = ?</sql>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>Export_DB</connection>
+    <connection>Export DB</connection>
     <schema />
     <table>t_gaac</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>

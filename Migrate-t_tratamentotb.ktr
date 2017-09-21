@@ -436,14 +436,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>EMR(OpenMRS)</name>
+    <name>EMR (OpenMRS)</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>openmrs</database>
     <port>3306</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10ccc2ffce</password>
+    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -491,14 +491,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>Export_DB</name>
+    <name>Export DB</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>export_db</database>
     <port>3306</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10ccc2ffce</password>
+    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -548,11 +548,6 @@
   <order>
     <hop>
       <from>Table input</from>
-      <to>Database join(patient_program)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Table input</from>
       <to>Database join(Obs - Start date 1)</to>
       <enabled>Y</enabled>
     </hop>
@@ -588,7 +583,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR(OpenMRS)</connection>
+    <connection>EMR (OpenMRS)</connection>
     <rowlimit>0</rowlimit>
     <sql>SELECT o.value_datetime as datafim
 FROM openmrs.encounter e 
@@ -597,7 +592,6 @@ WHERE e.encounter_type IN (6,9)
   AND o.concept_id=6120 
   AND o.voided=0 
   AND e.voided=0 
-  AND e.encounter_datetime&lt;=curdate()
   AND e.patient_id = ?</sql>
     <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
@@ -615,7 +609,7 @@ WHERE e.encounter_type IN (6,9)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>568</xloc>
+      <xloc>608</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -631,15 +625,15 @@ WHERE e.encounter_type IN (6,9)
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR(OpenMRS)</connection>
+    <connection>EMR (OpenMRS)</connection>
     <rowlimit>0</rowlimit>
     <sql>SELECT o.value_datetime AS data 
 FROM openmrs.encounter e
 	INNER JOIN openmrs.obs o ON e.encounter_id=o.encounter_id 
 WHERE e.encounter_type IN (6,9) 
-  AND o.concept_id IN (1113)  
+  AND o.concept_id = 1113
+  AND e.voided = 0
   AND o.voided=0 
-  AND e.voided=0 and e.encounter_datetime&lt;=curdate()
   AND e.patient_id = ?</sql>
     <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
@@ -673,17 +667,16 @@ WHERE e.encounter_type IN (6,9)
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR(OpenMRS)</connection>
+    <connection>EMR (OpenMRS)</connection>
     <rowlimit>0</rowlimit>
     <sql>SELECT o.obs_datetime AS data
 FROM openmrs.encounter e
 	INNER JOIN openmrs.obs o ON e.encounter_id=o.encounter_id 
 WHERE e.encounter_type IN (6,9) 
-  AND o.concept_id IN (1268) 
-  AND o.value_coded=1256 
+  AND o.concept_id = 1268 
+  AND o.value_coded = 1256 
   AND o.voided=0 
   AND e.voided=0 
-  AND e.encounter_datetime&lt;=curdate()
   AND e.patient_id = ?</sql>
     <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
@@ -707,46 +700,6 @@ WHERE e.encounter_type IN (6,9)
     </GUI>
   </step>
   <step>
-    <name>Database join(patient_program)</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR(OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>SELECT DISTINCT pp.date_enrolled, pp.date_completed 
-FROM openmrs.patient_program pp 
-WHERE pp.program_id = 5 
-  AND pp.voided = 0 
-  AND pp.date_completed&lt;=(SELECT property_value FROM openmrs.global_property WHERE property='esaudemetadata.dateToImportTo')
-  AND pp.patient_id = ?;</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Integer</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Table input</name>
     <type>TableInput</type>
     <description />
@@ -757,7 +710,7 @@ WHERE pp.program_id = 5
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR(OpenMRS)</connection>
+    <connection>Export DB</connection>
     <sql>SELECT
 nid,
 datanasc,
@@ -794,11 +747,11 @@ FROM t_paciente
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>Export_DB</connection>
+    <connection>Export DB</connection>
     <schema />
     <table>t_tratamentotb</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
@@ -833,7 +786,7 @@ FROM t_paciente
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
+      <xloc>816</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>

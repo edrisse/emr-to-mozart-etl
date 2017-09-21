@@ -35,3 +35,43 @@ where encounter.voided = false
   and encounter.encounter_datetime >= obs.value_datetime
 ) t);
 
+update encounter set encounter.voided = true where encounter.encounter_id in (
+select id from (select min(encounter.encounter_id) id from encounter
+where encounter.voided = false
+  and encounter.encounter_type in (5, 7)
+group by encounter.patient_id, encounter.encounter_datetime
+having count(*) > 1
+) t);
+
+update encounter set encounter.voided = true where encounter.encounter_id in (
+select id from (select min(encounter.encounter_id) id from encounter
+where encounter.voided = false
+  and encounter.encounter_type in (6, 9)
+group by encounter.patient_id, encounter.encounter_datetime
+having count(*) > 1
+) t);
+
+update encounter set encounter.voided = true where encounter.encounter_id in (
+select id from (SELECT min(e.encounter_id) id
+FROM openmrs.encounter e
+	INNER JOIN openmrs.obs o ON e.encounter_id=o.encounter_id 
+WHERE e.encounter_type IN (6,9) 
+  AND o.concept_id in (1113)  
+  AND o.voided=0
+  and e.voided = false 
+group by e.patient_id, o.value_datetime
+having count(*) > 1
+) t);
+
+update encounter set encounter.voided = true where encounter.encounter_id in (
+select id from (SELECT min(e.encounter_id) id
+FROM openmrs.encounter e 
+  INNER JOIN openmrs.obs o ON e.encounter_id=o.encounter_id
+WHERE e.encounter_type IN (6,9) 
+  AND o.concept_id=6120 
+  AND o.voided=0 
+  AND e.voided=0 
+group by e.patient_id
+having count(*) > 1
+) t);
+

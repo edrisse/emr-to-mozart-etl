@@ -436,14 +436,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>EMR(OpenMRS)</name>
+    <name>EMR (OpenMRS)</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>openmrs</database>
     <port>3306</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10ccc2ffce</password>
+    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -491,14 +491,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>Export_DB</name>
+    <name>Export DB</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>export_db</database>
     <port>3306</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10ccc2ffce</password>
+    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -568,7 +568,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR(OpenMRS)</connection>
+    <connection>EMR (OpenMRS)</connection>
     <rowlimit>0</rowlimit>
     <sql>SELECT CASE ps.state 
 	when 7 then 'Transferido para' 
@@ -618,7 +618,7 @@ WHERE pg.voided=0
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR(OpenMRS)</connection>
+    <connection>Export DB</connection>
     <sql>SELECT
 nid,
 datanasc,
@@ -655,11 +655,11 @@ FROM t_paciente
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>Export_DB</connection>
+    <connection>Export DB</connection>
     <schema />
     <table>t_histestadopaciente</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
