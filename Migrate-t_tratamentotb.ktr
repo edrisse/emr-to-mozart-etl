@@ -548,11 +548,6 @@
   <order>
     <hop>
       <from>Table input</from>
-      <to>Database join(patient_program)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Table input</from>
       <to>Database join(Obs - Start date 1)</to>
       <enabled>Y</enabled>
     </hop>
@@ -707,46 +702,6 @@ WHERE e.encounter_type IN (6,9)
     </GUI>
   </step>
   <step>
-    <name>Database join(patient_program)</name>
-    <type>DBJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>EMR(OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>SELECT DISTINCT pp.date_enrolled, pp.date_completed 
-FROM openmrs.patient_program pp 
-WHERE pp.program_id = 5 
-  AND pp.voided = 0 
-  AND pp.date_completed&lt;=(SELECT property_value FROM openmrs.global_property WHERE property='esaudemetadata.dateToImportTo')
-  AND pp.patient_id = ?;</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>Integer</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Table input</name>
     <type>TableInput</type>
     <description />
@@ -798,7 +753,7 @@ FROM t_paciente
     <schema />
     <table>t_tratamentotb</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
