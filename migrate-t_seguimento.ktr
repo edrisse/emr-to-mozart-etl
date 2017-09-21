@@ -437,13 +437,13 @@
   </notepads>
   <connection>
     <name>EMR (OpenMRS)</name>
-    <server>localhost</server>
+    <server>${EMR_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>openmrs</database>
-    <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
+    <database>${EMR_DATABASE}</database>
+    <port>${EMR_PORT}</port>
+    <username>${EMR_USER}</username>
+    <password>${EMR_PASSWORD}</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -462,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
+        <attribute>${EMR_PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -492,13 +492,13 @@
   </connection>
   <connection>
     <name>Export DB</name>
-    <server>localhost</server>
+    <server>${EXPORT_DB_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>export_db</database>
-    <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86a95c2d4a61cba79dd93a6c9</password>
+    <database>${EXPORT_DB_DATABASE}</database>
+    <port>${EXPORT_DB_PORT}</port>
+    <username>${EXPORT_DB_USER}</username>
+    <password>${EXPORT_DB_PASSWORD}</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -517,7 +517,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
+        <attribute>${EXPORT_DB_PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
