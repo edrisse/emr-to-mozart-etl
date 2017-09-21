@@ -638,11 +638,11 @@
     </hop>
     <hop>
       <from>Calculate Age in Months</from>
-      <to>Database join</to>
+      <to>Fetch NID</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database join</from>
+      <from>Fetch NID</from>
       <to>Has NID</to>
       <enabled>Y</enabled>
     </hop>
@@ -1251,7 +1251,7 @@
     </GUI>
   </step>
   <step>
-    <name>Database join</name>
+    <name>Fetch NID</name>
     <type>DBJoin</type>
     <description />
     <distribute>Y</distribute>
@@ -3478,15 +3478,12 @@ where patient.voided = false
     <fields>
       <field>
         <name>patient_id</name>
-        <rename />
       </field>
       <field>
         <name>gender</name>
-        <rename />
       </field>
       <field>
         <name>birthdate</name>
-        <rename />
       </field>
       <field>
         <name>first_encounter_date</name>
@@ -3494,7 +3491,6 @@ where patient.voided = false
       </field>
       <field>
         <name>patient_type</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -3525,15 +3521,12 @@ where patient.voided = false
     <fields>
       <field>
         <name>patient_id</name>
-        <rename />
       </field>
       <field>
         <name>gender</name>
-        <rename />
       </field>
       <field>
         <name>birthdate</name>
-        <rename />
       </field>
       <field>
         <name>program_date</name>
@@ -3541,7 +3534,6 @@ where patient.voided = false
       </field>
       <field>
         <name>patient_type</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
