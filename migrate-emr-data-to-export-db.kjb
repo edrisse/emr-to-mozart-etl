@@ -300,7 +300,7 @@
       <minutes>0</minutes>
       <weekDay>1</weekDay>
       <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
+      <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>48</xloc>
@@ -592,7 +592,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>784</yloc>
+      <yloc>848</yloc>
     </entry>
     <entry>
       <name>migrate-t_adulto</name>
@@ -628,7 +628,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>720</yloc>
+      <yloc>784</yloc>
     </entry>
     <entry>
       <name>migrate-t_crianca</name>
@@ -664,7 +664,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>592</yloc>
+      <yloc>656</yloc>
     </entry>
     <entry>
       <name>migrate-t_mae.ktr</name>
@@ -700,7 +700,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1040</xloc>
-      <yloc>560</yloc>
+      <yloc>624</yloc>
     </entry>
     <entry>
       <name>migrate-t_pai</name>
@@ -736,7 +736,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1040</xloc>
-      <yloc>640</yloc>
+      <yloc>704</yloc>
     </entry>
     <entry>
       <name>update-t_crianca-with-parents_ids</name>
@@ -772,7 +772,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1312</xloc>
-      <yloc>608</yloc>
+      <yloc>672</yloc>
     </entry>
     <entry>
       <name>migrate-t_tarv</name>
@@ -808,7 +808,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>656</yloc>
+      <yloc>720</yloc>
     </entry>
     <entry>
       <name>migrate-t_questionario</name>
@@ -844,7 +844,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>528</yloc>
+      <yloc>592</yloc>
     </entry>
     <entry>
       <name>migrate-t_observacaopaciente</name>
@@ -880,7 +880,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>464</yloc>
+      <yloc>528</yloc>
     </entry>
     <entry>
       <name>migrate-t_aconselhamento</name>
@@ -916,7 +916,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>400</yloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
       <name>migrate-t_actividadeaconselhamento</name>
@@ -952,7 +952,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1040</xloc>
-      <yloc>400</yloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
       <name>migrate-t_esposicaotarvmae</name>
@@ -988,7 +988,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>336</yloc>
+      <yloc>400</yloc>
     </entry>
     <entry>
       <name>migrate-t_esposicaotarvnascenca</name>
@@ -1024,7 +1024,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>272</yloc>
+      <yloc>336</yloc>
     </entry>
     <entry>
       <name>migrate-t_antecedentesclinicospaciente</name>
@@ -1060,7 +1060,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>208</yloc>
+      <yloc>272</yloc>
     </entry>
     <entry>
       <name>Migrate-t_gaac</name>
@@ -1096,7 +1096,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>144</yloc>
+      <yloc>208</yloc>
     </entry>
     <entry>
       <name>migrate-t_histestadopaciente</name>
@@ -1132,7 +1132,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>80</yloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>migrate-t_tratamentotb</name>
@@ -1168,7 +1168,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>784</xloc>
-      <yloc>16</yloc>
+      <yloc>80</yloc>
     </entry>
     <entry>
       <name>migrate-t_tratamentotb_2</name>
@@ -1204,7 +1204,115 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>1040</xloc>
+      <yloc>80</yloc>
+    </entry>
+    <entry>
+      <name>migrate-t_afinidade</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/Migrate-t_afinidade.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>368</xloc>
+      <yloc>288</yloc>
+    </entry>
+    <entry>
+      <name>migrate-t_buscaactiva</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/Migrate-t_buscaactiva.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>784</xloc>
       <yloc>16</yloc>
+    </entry>
+    <entry>
+      <name>migrate-t_gaac_actividades</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/Migrate-t_gaac_actividades.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1040</xloc>
+      <yloc>208</yloc>
     </entry>
   </entries>
   <hops>
@@ -1441,6 +1549,33 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>migrate-t_afinidade</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>migrate-t_paciente</from>
+      <to>migrate-t_buscaactiva</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Migrate-t_gaac</from>
+      <to>migrate-t_gaac_actividades</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>

@@ -436,14 +436,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>EMR(OpenMRS)</name>
-    <server>localhost</server>
+    <name>EMR (OpenMRS)</name>
+    <server>${EMR_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>openmrs</database>
-    <port>3307</port>
-    <username>root</username>
-    <password>Encrypted 65536175646550d1f7db8513f4a3a89b18bd63c99dbdde</password>
+    <database>${EMR_DATABASE}</database>
+    <port>${EMR_PORT}</port>
+    <username>${EMR_USER}</username>
+    <password>${EMR_PASSWORD}</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -462,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>3307</attribute>
+        <attribute>${EMR_PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -491,14 +491,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>Export_DB</name>
-    <server>localhost</server>
+    <name>Export DB</name>
+    <server>${EXPORT_DB_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>export_db</database>
-    <port>3307</port>
-    <username>root</username>
-    <password>Encrypted 65536175646550d1f7db8513f4a3a89b18bd63c99dbdde</password>
+    <database>${EXPORT_DB_DATABASE}</database>
+    <port>${EXPORT_DB_PORT}</port>
+    <username>${EXPORT_DB_USER}</username>
+    <password>${EXPORT_DB_PASSWORD}</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -517,7 +517,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>3307</attribute>
+        <attribute>${EXPORT_DB_PORT}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -563,7 +563,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR(OpenMRS)</connection>
+    <connection>EMR (OpenMRS)</connection>
     <sql>SELECT name 
 FROM openmrs.gaac_affinity_type;</sql>
     <limit>0</limit>
@@ -595,7 +595,7 @@ FROM openmrs.gaac_affinity_type;</sql>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>Export_DB</connection>
+    <connection>Export DB</connection>
     <schema />
     <table>t_afinidade</table>
     <commit>1000</commit>
