@@ -441,9 +441,9 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>openmrs</database>
-    <port>3306</port>
+    <port>3307</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10ccc2ffce</password>
+    <password>Encrypted 65536175646550d1f7db8513f4a3a89b18bd63c99dbdde</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -462,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
+        <attribute>3307</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -496,9 +496,9 @@
     <type>MYSQL</type>
     <access>Native</access>
     <database>export_db</database>
-    <port>3306</port>
+    <port>3307</port>
     <username>root</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10ccc2ffce</password>
+    <password>Encrypted 65536175646550d1f7db8513f4a3a89b18bd63c99dbdde</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -517,7 +517,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>3306</attribute>
+        <attribute>3307</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
