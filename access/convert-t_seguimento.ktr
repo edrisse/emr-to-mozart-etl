@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Migrate-t_histestadopaciente</name>
+    <name>convert-t_seguimento</name>
     <description />
     <extended_description />
     <trans_version />
@@ -427,69 +427,14 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017/09/19 08:43:00.311</created_date>
+    <created_date>2017/09/28 11:49:10.639</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017/09/19 08:43:00.311</modified_date>
+    <modified_date>2017/09/28 11:49:10.639</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>EMR (OpenMRS)</name>
-    <server>${EMR_HOST}</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>${EMR_DATABASE}</database>
-    <port>${EMR_PORT}</port>
-    <username>${EMR_USER}</username>
-    <password>${EMR_PASSWORD}</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${EMR_PORT}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>STREAM_RESULTS</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <connection>
     <name>Export DB</name>
     <server>${EXPORT_DB_HOST}</server>
@@ -548,18 +493,18 @@
   <order>
     <hop>
       <from>Table input</from>
-      <to>Database join</to>
+      <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database join</from>
-      <to>Table output</to>
+      <from>Select values</from>
+      <to>Microsoft Access Output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Database join</name>
-    <type>DBJoin</type>
+    <name>Microsoft Access Output</name>
+    <type>AccessOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -568,32 +513,14 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>SELECT CASE ps.state 
-	when 7 then 'Transferido para' 
-	when 8 then 'Suspender Tarv'
-	when 9 then 'Abandono'
-	when 10 then 'Morte'
-	else 'OUTRO' end as estado, 
-	ps.start_date 
-FROM openmrs.patient_program pg 
-  INNER JOIN openmrs.patient_state ps on pg.patient_program_id=ps.patient_program_id 
-WHERE pg.voided=0 
-  AND ps.voided=0 
-  AND pg.program_id=2 
-  AND ps.state in (7,8,9,10)
-  AND ps.end_date is not null
-  AND ps.start_date&lt;=curdate() 
-  AND pg.patient_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>None</type>
-      </field>
-    </parameter>
+    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <table>t_seguimento</table>
+    <truncate>Y</truncate>
+    <create_file>N</create_file>
+    <create_table>N</create_table>
+    <commit_size>500</commit_size>
+    <add_to_result_filenames>N</add_to_result_filenames>
+    <do_not_open_newfile_init>N</do_not_open_newfile_init>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -602,8 +529,387 @@ WHERE pg.voided=0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>333</xloc>
-      <yloc>219</yloc>
+      <xloc>368</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>idseguimento</name>
+        <rename />
+      </field>
+      <field>
+        <name>nid</name>
+        <rename />
+      </field>
+      <field>
+        <name>idade</name>
+        <rename />
+      </field>
+      <field>
+        <name>meses</name>
+        <rename />
+      </field>
+      <field>
+        <name>estadohiv</name>
+        <rename />
+      </field>
+      <field>
+        <name>dataseguimento</name>
+        <rename />
+      </field>
+      <field>
+        <name>estadiooms</name>
+        <rename />
+      </field>
+      <field>
+        <name>dataproximaconsulta</name>
+        <rename />
+      </field>
+      <field>
+        <name>aleitamentomaterno</name>
+        <rename />
+      </field>
+      <field>
+        <name>idadedesmame</name>
+        <rename />
+      </field>
+      <field>
+        <name>Gravidez</name>
+        <rename />
+      </field>
+      <field>
+        <name>screeningtb</name>
+        <rename />
+      </field>
+      <field>
+        <name>Observacao</name>
+        <rename />
+      </field>
+      <field>
+        <name>screeningIts</name>
+        <rename />
+      </field>
+      <field>
+        <name>aconselhado</name>
+        <rename />
+      </field>
+      <field>
+        <name>referidoSectorClinico</name>
+        <rename />
+      </field>
+      <field>
+        <name>gravida</name>
+        <rename />
+      </field>
+      <field>
+        <name>dum</name>
+        <rename />
+      </field>
+      <field>
+        <name>dpp</name>
+        <rename />
+      </field>
+      <field>
+        <name>PTV_TARV</name>
+        <rename />
+      </field>
+      <field>
+        <name>sintomasTb</name>
+        <rename />
+      </field>
+      <field>
+        <name>dataParto</name>
+        <rename />
+      </field>
+      <field>
+        <name>sexoseguimento</name>
+        <rename />
+      </field>
+      <field>
+        <name>apssdatavisita</name>
+        <rename />
+      </field>
+      <field>
+        <name>pp1</name>
+        <rename />
+      </field>
+      <field>
+        <name>pp2</name>
+        <rename />
+      </field>
+      <field>
+        <name>pp3</name>
+        <rename />
+      </field>
+      <field>
+        <name>pp4</name>
+        <rename />
+      </field>
+      <field>
+        <name>pp5</name>
+        <rename />
+      </field>
+      <field>
+        <name>pp6</name>
+        <rename />
+      </field>
+      <field>
+        <name>pp7</name>
+        <rename />
+      </field>
+      <field>
+        <name>apssTipovisita</name>
+        <rename />
+      </field>
+      <field>
+        <name>apssAdesao</name>
+        <rename />
+      </field>
+      <field>
+        <name>apssActividade</name>
+        <rename />
+      </field>
+      <field>
+        <name>apssproximavisita</name>
+        <rename />
+      </field>
+      <field>
+        <name>lactante</name>
+        <rename />
+      </field>
+      <field>
+        <name>localSeguimento</name>
+        <rename />
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>lactante</name>
+        <rename>lactante</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>pp1</name>
+        <rename>pp1</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>pp2</name>
+        <rename>pp2</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>pp3</name>
+        <rename>pp3</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>pp4</name>
+        <rename>pp4</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>pp5</name>
+        <rename>pp5</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>pp6</name>
+        <rename>pp6</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>pp7</name>
+        <rename>pp7</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>dataseguimento</name>
+        <rename>dataseguimento</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>dataproximaconsulta</name>
+        <rename>dataproximaconsulta</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>dataParto</name>
+        <rename>dataParto</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+      <meta>
+        <name>apssdatavisita</name>
+        <rename>apssdatavisita</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -611,7 +917,7 @@ WHERE pg.voided=0
     <name>Table input</name>
     <type>TableInput</type>
     <description />
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -620,13 +926,46 @@ WHERE pg.voided=0
     </partitioning>
     <connection>Export DB</connection>
     <sql>SELECT
-nid,
-datanasc,
-patient_id,
-dataabertura
-FROM t_paciente
+  idseguimento
+, nid
+, idade
+, meses
+, estadohiv
+, dataseguimento
+, estadiooms
+, dataproximaconsulta
+, aleitamentomaterno
+, idadedesmame
+, Gravidez
+, screeningtb
+, Observacao
+, screeningIts
+, aconselhado
+, referidoSectorClinico
+, gravida
+, dum
+, dpp
+, PTV_TARV
+, sintomasTb
+, dataParto
+, sexoseguimento
+, apssdatavisita
+, pp1
+, pp2
+, pp3
+, pp4
+, pp5
+, pp6
+, pp7
+, apssTipovisita
+, apssAdesao
+, apssActividade
+, apssproximavisita
+, lactante
+, localSeguimento
+FROM t_seguimento
 </sql>
-    <limit>0</limit>
+    <limit />
     <lookup />
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -639,63 +978,8 @@ FROM t_paciente
       </output>
     </remotesteps>
     <GUI>
-      <xloc>133</xloc>
-      <yloc>219</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>Export DB</connection>
-    <schema />
-    <table>t_histestadopaciente</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>codestado</column_name>
-        <stream_name>estado</stream_name>
-      </field>
-      <field>
-        <column_name>dataestado</column_name>
-        <stream_name>start_date</stream_name>
-      </field>
-      <field>
-        <column_name>nid</column_name>
-        <stream_name>nid</stream_name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>533</xloc>
-      <yloc>219</yloc>
+      <xloc>80</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Migrate-t_histestadopaciente</name>
+    <name>convert-t_hdd</name>
     <description />
     <extended_description />
     <trans_version />
@@ -427,69 +427,14 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017/09/19 08:43:00.311</created_date>
+    <created_date>2017/09/28 11:27:53.035</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017/09/19 08:43:00.311</modified_date>
+    <modified_date>2017/09/28 11:27:53.035</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>EMR (OpenMRS)</name>
-    <server>${EMR_HOST}</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>${EMR_DATABASE}</database>
-    <port>${EMR_PORT}</port>
-    <username>${EMR_USER}</username>
-    <password>${EMR_PASSWORD}</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${EMR_PORT}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>STREAM_RESULTS</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <connection>
     <name>Export DB</name>
     <server>${EXPORT_DB_HOST}</server>
@@ -547,19 +492,19 @@
   </connection>
   <order>
     <hop>
-      <from>Table input</from>
-      <to>Database join</to>
+      <from>Load from t_hdd</from>
+      <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database join</from>
-      <to>Table output</to>
+      <from>Select values</from>
+      <to>Microsoft Access Output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Database join</name>
-    <type>DBJoin</type>
+    <name>Load from t_hdd</name>
+    <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -568,63 +513,16 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>EMR (OpenMRS)</connection>
-    <rowlimit>0</rowlimit>
-    <sql>SELECT CASE ps.state 
-	when 7 then 'Transferido para' 
-	when 8 then 'Suspender Tarv'
-	when 9 then 'Abandono'
-	when 10 then 'Morte'
-	else 'OUTRO' end as estado, 
-	ps.start_date 
-FROM openmrs.patient_program pg 
-  INNER JOIN openmrs.patient_state ps on pg.patient_program_id=ps.patient_program_id 
-WHERE pg.voided=0 
-  AND ps.voided=0 
-  AND pg.program_id=2 
-  AND ps.state in (7,8,9,10)
-  AND ps.end_date is not null
-  AND ps.start_date&lt;=curdate() 
-  AND pg.patient_id = ?</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>patient_id</name>
-        <type>None</type>
-      </field>
-    </parameter>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>333</xloc>
-      <yloc>219</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table input</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>N</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
     <connection>Export DB</connection>
     <sql>SELECT
-nid,
-datanasc,
-patient_id,
-dataabertura
-FROM t_paciente
+  HdD
+, designacao
+, local
+, Provincia
+, Distrito
+, dataabertura
+, location_id
+FROM t_hdd
 </sql>
     <limit>0</limit>
     <lookup />
@@ -639,14 +537,14 @@ FROM t_paciente
       </output>
     </remotesteps>
     <GUI>
-      <xloc>133</xloc>
-      <yloc>219</yloc>
+      <xloc>80</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
+    <name>Microsoft Access Output</name>
+    <type>AccessOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -655,36 +553,85 @@ FROM t_paciente
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>Export DB</connection>
-    <schema />
-    <table>t_histestadopaciente</table>
-    <commit>1000</commit>
+    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <table>t_hdd</table>
     <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
+    <create_file>N</create_file>
+    <create_table>N</create_table>
+    <commit_size>500</commit_size>
+    <add_to_result_filenames>N</add_to_result_filenames>
+    <do_not_open_newfile_init>N</do_not_open_newfile_init>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
     <fields>
       <field>
-        <column_name>codestado</column_name>
-        <stream_name>estado</stream_name>
+        <name>HdD</name>
+        <rename />
       </field>
       <field>
-        <column_name>dataestado</column_name>
-        <stream_name>start_date</stream_name>
+        <name>designacao</name>
+        <rename />
       </field>
       <field>
-        <column_name>nid</column_name>
-        <stream_name>nid</stream_name>
+        <name>local</name>
+        <rename />
       </field>
+      <field>
+        <name>Provincia</name>
+        <rename />
+      </field>
+      <field>
+        <name>Distrito</name>
+        <rename />
+      </field>
+      <field>
+        <name>dataabertura</name>
+        <rename />
+      </field>
+      <field>
+        <name>location_id</name>
+        <rename />
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>dataabertura</name>
+        <rename>dataabertura</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
     </fields>
     <cluster_schema />
     <remotesteps>
@@ -694,8 +641,8 @@ FROM t_paciente
       </output>
     </remotesteps>
     <GUI>
-      <xloc>533</xloc>
-      <yloc>219</yloc>
+      <xloc>240</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

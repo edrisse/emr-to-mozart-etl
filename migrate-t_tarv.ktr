@@ -1276,7 +1276,7 @@ where obs.voided = false
   and obs.concept_id = 1088
   and obs.encounter_id = ?
 </sql>
-    <outer_join>Y</outer_join>
+    <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
       <field>
