@@ -287,18 +287,6 @@
   <shared_objects_file />
   <entries>
     <entry>
-      <name>Delete Access DB File</name>
-      <description />
-      <type>DELETE_FILE</type>
-      <filename>${ACCESS_DB_FILE_LOCATION}</filename>
-      <fail_if_file_not_exists>N</fail_if_file_not_exists>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>48</yloc>
-    </entry>
-    <entry>
       <name>START</name>
       <description />
       <type>SPECIAL</type>
@@ -342,7 +330,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>880</xloc>
+      <xloc>704</xloc>
       <yloc>48</yloc>
     </entry>
     <entry>
@@ -378,7 +366,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1088</xloc>
+      <xloc>912</xloc>
       <yloc>48</yloc>
     </entry>
     <entry>
@@ -414,7 +402,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1280</xloc>
+      <xloc>1104</xloc>
       <yloc>48</yloc>
     </entry>
     <entry>
@@ -450,8 +438,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1280</xloc>
-      <yloc>144</yloc>
+      <xloc>1264</xloc>
+      <yloc>48</yloc>
     </entry>
     <entry>
       <name>convert-t_tarv</name>
@@ -486,8 +474,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1136</xloc>
-      <yloc>144</yloc>
+      <xloc>1264</xloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
       <name>convert-t_gaac_actividades</name>
@@ -522,8 +510,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>992</xloc>
-      <yloc>144</yloc>
+      <xloc>1120</xloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
       <name>convert-t_resultadoslaboratorio</name>
@@ -558,8 +546,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
-      <yloc>144</yloc>
+      <xloc>912</xloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
       <name>convert-t_adulto</name>
@@ -594,8 +582,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>608</xloc>
-      <yloc>144</yloc>
+      <xloc>736</xloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
       <name>convert-t_aconselhamento</name>
@@ -630,8 +618,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
-      <yloc>144</yloc>
+      <xloc>576</xloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
       <name>Set variables</name>
@@ -690,15 +678,6 @@
     </entry>
   </entries>
   <hops>
-    <hop>
-      <from>Delete Access DB File</from>
-      <to>Create New Copy of Access DB File</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>Create New Copy of Access DB File</from>
       <to>convert-t_hdd</to>
@@ -800,7 +779,7 @@
     </hop>
     <hop>
       <from>Create Output Folder</from>
-      <to>Delete Access DB File</to>
+      <to>Create New Copy of Access DB File</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
