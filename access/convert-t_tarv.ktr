@@ -571,7 +571,7 @@ FROM t_tarv
       <method>none</method>
       <schema_name />
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <filename>${ACCESS_DB_FILE_LOCATION}</filename>
     <table>t_tarv</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
@@ -606,103 +606,78 @@ FROM t_tarv
     <fields>
       <field>
         <name>idtarv</name>
-        <rename />
       </field>
       <field>
         <name>nid</name>
-        <rename />
       </field>
       <field>
         <name>datatarv</name>
-        <rename />
       </field>
       <field>
         <name>codregime</name>
-        <rename />
       </field>
       <field>
         <name>dias</name>
-        <rename />
       </field>
       <field>
         <name>tipotarv</name>
-        <rename />
       </field>
       <field>
         <name>codmudanca</name>
-        <rename />
       </field>
       <field>
         <name>dataproxima</name>
-        <rename />
       </field>
       <field>
         <name>observacao</name>
-        <rename />
       </field>
       <field>
         <name>QtdComp</name>
-        <rename />
       </field>
       <field>
         <name>QtdSaldo</name>
-        <rename />
       </field>
       <field>
         <name>dataoutroservico</name>
-        <rename />
       </field>
       <field>
         <name>embalageensaviadas</name>
-        <rename />
       </field>
       <field>
         <name>saldoembalagens</name>
-        <rename />
       </field>
       <field>
         <name>efeitosSecundarios</name>
-        <rename />
       </field>
       <field>
         <name>dataexpirareceita</name>
-        <rename />
       </field>
       <field>
         <name>idade</name>
-        <rename />
       </field>
       <field>
         <name>compromido</name>
-        <rename />
       </field>
       <field>
         <name>compromido1</name>
-        <rename />
       </field>
       <field>
         <name>compromido2</name>
-        <rename />
       </field>
       <field>
         <name>dose</name>
-        <rename />
       </field>
       <field>
         <name>dose1</name>
-        <rename />
       </field>
       <field>
         <name>dose2</name>
-        <rename />
       </field>
       <field>
         <name>motivoInicioTarv</name>
-        <rename />
       </field>
       <field>
         <name>linhaTerapeutica</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>

@@ -513,7 +513,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <filename>${ACCESS_DB_FILE_LOCATION}</filename>
     <table>t_paciente</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
@@ -548,159 +548,120 @@
     <fields>
       <field>
         <name>hdd</name>
-        <rename />
       </field>
       <field>
         <name>dataabertura</name>
-        <rename />
       </field>
       <field>
         <name>nid</name>
-        <rename />
       </field>
       <field>
         <name>sexo</name>
-        <rename />
       </field>
       <field>
         <name>datanasc</name>
-        <rename />
       </field>
       <field>
         <name>idade</name>
-        <rename />
       </field>
       <field>
         <name>meses</name>
-        <rename />
       </field>
       <field>
         <name>coddistrito</name>
-        <rename />
       </field>
       <field>
         <name>codproveniencia</name>
-        <rename />
       </field>
       <field>
         <name>designacaoprov</name>
-        <rename />
       </field>
       <field>
         <name>Codigoproveniencia</name>
-        <rename />
       </field>
       <field>
         <name>emtarv</name>
-        <rename />
       </field>
       <field>
         <name>datainiciotarv</name>
-        <rename />
       </field>
       <field>
         <name>codregime</name>
-        <rename />
       </field>
       <field>
         <name>codestado</name>
-        <rename />
       </field>
       <field>
         <name>destinopaciente</name>
-        <rename />
       </field>
       <field>
         <name>datasaidatarv</name>
-        <rename />
       </field>
       <field>
         <name>datadiagnostico</name>
-        <rename />
       </field>
       <field>
         <name>aconselhado</name>
-        <rename />
       </field>
       <field>
         <name>referidocd</name>
-        <rename />
       </field>
       <field>
         <name>estadiooms</name>
-        <rename />
       </field>
       <field>
         <name>emtratamentotb</name>
-        <rename />
       </field>
       <field>
         <name>DataCD</name>
-        <rename />
       </field>
       <field>
         <name>referidohdd</name>
-        <rename />
       </field>
       <field>
         <name>datareferidohdd</name>
-        <rename />
       </field>
       <field>
         <name>aceitabuscaactiva</name>
-        <rename />
       </field>
       <field>
         <name>dataaceitabuscaactiva</name>
-        <rename />
       </field>
       <field>
         <name>referidobuscaactiva</name>
-        <rename />
       </field>
       <field>
         <name>datareferenciabuscaactiva</name>
-        <rename />
       </field>
       <field>
         <name>situacaohiv</name>
-        <rename />
       </field>
       <field>
         <name>observacao</name>
-        <rename />
       </field>
       <field>
         <name>Educacaoprevencao</name>
-        <rename />
       </field>
       <field>
         <name>transfOutraUs</name>
-        <rename />
       </field>
       <field>
         <name>dataElegibilidadeInicioTarv</name>
-        <rename />
       </field>
       <field>
         <name>apssDisponivel</name>
-        <rename />
       </field>
       <field>
         <name>apssFormaContacto</name>
-        <rename />
       </field>
       <field>
         <name>apssQuemInformouSeroestado</name>
-        <rename />
       </field>
       <field>
         <name>apssconheceestadoparceiro</name>
-        <rename />
       </field>
       <field>
         <name>PatientID</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>

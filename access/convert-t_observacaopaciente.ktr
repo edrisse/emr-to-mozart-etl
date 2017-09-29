@@ -554,7 +554,7 @@ FROM t_observacaopaciente
       <method>none</method>
       <schema_name />
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <filename>${ACCESS_DB_FILE_LOCATION}</filename>
     <table>t_observacaopaciente</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
@@ -589,35 +589,27 @@ FROM t_observacaopaciente
     <fields>
       <field>
         <name>idobservacao</name>
-        <rename />
       </field>
       <field>
         <name>codobservacao</name>
-        <rename />
       </field>
       <field>
         <name>codestado</name>
-        <rename />
       </field>
       <field>
         <name>valor</name>
-        <rename />
       </field>
       <field>
         <name>nid</name>
-        <rename />
       </field>
       <field>
         <name>data</name>
-        <rename />
       </field>
       <field>
         <name>medico</name>
-        <rename />
       </field>
       <field>
         <name>Observacao</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>

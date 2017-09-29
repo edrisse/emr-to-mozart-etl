@@ -513,7 +513,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <filename>${ACCESS_DB_FILE_LOCATION}</filename>
     <table>t_seguimento</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
@@ -548,151 +548,114 @@
     <fields>
       <field>
         <name>idseguimento</name>
-        <rename />
       </field>
       <field>
         <name>nid</name>
-        <rename />
       </field>
       <field>
         <name>idade</name>
-        <rename />
       </field>
       <field>
         <name>meses</name>
-        <rename />
       </field>
       <field>
         <name>estadohiv</name>
-        <rename />
       </field>
       <field>
         <name>dataseguimento</name>
-        <rename />
       </field>
       <field>
         <name>estadiooms</name>
-        <rename />
       </field>
       <field>
         <name>dataproximaconsulta</name>
-        <rename />
       </field>
       <field>
         <name>aleitamentomaterno</name>
-        <rename />
       </field>
       <field>
         <name>idadedesmame</name>
-        <rename />
       </field>
       <field>
         <name>Gravidez</name>
-        <rename />
       </field>
       <field>
         <name>screeningtb</name>
-        <rename />
       </field>
       <field>
         <name>Observacao</name>
-        <rename />
       </field>
       <field>
         <name>screeningIts</name>
-        <rename />
       </field>
       <field>
         <name>aconselhado</name>
-        <rename />
       </field>
       <field>
         <name>referidoSectorClinico</name>
-        <rename />
       </field>
       <field>
         <name>gravida</name>
-        <rename />
       </field>
       <field>
         <name>dum</name>
-        <rename />
       </field>
       <field>
         <name>dpp</name>
-        <rename />
       </field>
       <field>
         <name>PTV_TARV</name>
-        <rename />
       </field>
       <field>
         <name>sintomasTb</name>
-        <rename />
       </field>
       <field>
         <name>dataParto</name>
-        <rename />
       </field>
       <field>
         <name>sexoseguimento</name>
-        <rename />
       </field>
       <field>
         <name>apssdatavisita</name>
-        <rename />
       </field>
       <field>
         <name>pp1</name>
-        <rename />
       </field>
       <field>
         <name>pp2</name>
-        <rename />
       </field>
       <field>
         <name>pp3</name>
-        <rename />
       </field>
       <field>
         <name>pp4</name>
-        <rename />
       </field>
       <field>
         <name>pp5</name>
-        <rename />
       </field>
       <field>
         <name>pp6</name>
-        <rename />
       </field>
       <field>
         <name>pp7</name>
-        <rename />
       </field>
       <field>
         <name>apssTipovisita</name>
-        <rename />
       </field>
       <field>
         <name>apssAdesao</name>
-        <rename />
       </field>
       <field>
         <name>apssActividade</name>
-        <rename />
       </field>
       <field>
         <name>apssproximavisita</name>
-        <rename />
       </field>
       <field>
         <name>lactante</name>
-        <rename />
       </field>
       <field>
         <name>localSeguimento</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>

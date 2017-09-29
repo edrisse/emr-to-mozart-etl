@@ -553,7 +553,7 @@ FROM t_hdd
       <method>none</method>
       <schema_name />
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <filename>${ACCESS_DB_FILE_LOCATION}</filename>
     <table>t_hdd</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
@@ -588,31 +588,24 @@ FROM t_hdd
     <fields>
       <field>
         <name>HdD</name>
-        <rename />
       </field>
       <field>
         <name>designacao</name>
-        <rename />
       </field>
       <field>
         <name>local</name>
-        <rename />
       </field>
       <field>
         <name>Provincia</name>
-        <rename />
       </field>
       <field>
         <name>Distrito</name>
-        <rename />
       </field>
       <field>
         <name>dataabertura</name>
-        <rename />
       </field>
       <field>
         <name>location_id</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>

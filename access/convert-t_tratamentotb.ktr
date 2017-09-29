@@ -551,7 +551,7 @@ FROM t_tratamentotb
       <method>none</method>
       <schema_name />
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <filename>${ACCESS_DB_FILE_LOCATION}</filename>
     <table>t_tratamentoTB</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
@@ -586,23 +586,18 @@ FROM t_tratamentotb
     <fields>
       <field>
         <name>nid</name>
-        <rename />
       </field>
       <field>
         <name>data</name>
-        <rename />
       </field>
       <field>
         <name>Observacao</name>
-        <rename />
       </field>
       <field>
         <name>datafim</name>
-        <rename />
       </field>
       <field>
         <name>servico</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>

@@ -290,12 +290,12 @@
       <name>Delete Access DB File</name>
       <description />
       <type>DELETE_FILE</type>
-      <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+      <filename>${ACCESS_DB_FILE_LOCATION}</filename>
       <fail_if_file_not_exists>N</fail_if_file_not_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>224</xloc>
+      <xloc>656</xloc>
       <yloc>48</yloc>
     </entry>
     <entry>
@@ -334,7 +334,7 @@
         <field>
           <source_filefolder>${Internal.Entry.Current.Directory}/access-database-template.mdb</source_filefolder>
           <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
-          <destination_filefolder>${Internal.Entry.Current.Directory}/access-database.mdb</destination_filefolder>
+          <destination_filefolder>${ACCESS_DB_FILE_LOCATION}</destination_filefolder>
           <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
           <wildcard />
         </field>
@@ -342,7 +342,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
+      <xloc>880</xloc>
       <yloc>48</yloc>
     </entry>
     <entry>
@@ -378,7 +378,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
+      <xloc>1088</xloc>
       <yloc>48</yloc>
     </entry>
     <entry>
@@ -414,7 +414,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
+      <xloc>1280</xloc>
       <yloc>48</yloc>
     </entry>
     <entry>
@@ -450,8 +450,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1056</xloc>
-      <yloc>48</yloc>
+      <xloc>1280</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>convert-t_tarv</name>
@@ -486,8 +486,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1200</xloc>
-      <yloc>48</yloc>
+      <xloc>1136</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>convert-t_gaac_actividades</name>
@@ -522,8 +522,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1360</xloc>
-      <yloc>48</yloc>
+      <xloc>992</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>convert-t_resultadoslaboratorio</name>
@@ -558,8 +558,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1360</xloc>
-      <yloc>160</yloc>
+      <xloc>784</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>convert-t_adulto</name>
@@ -594,8 +594,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1184</xloc>
-      <yloc>160</yloc>
+      <xloc>608</xloc>
+      <yloc>144</yloc>
     </entry>
     <entry>
       <name>convert-t_aconselhamento</name>
@@ -630,20 +630,66 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1024</xloc>
-      <yloc>160</yloc>
+      <xloc>448</xloc>
+      <yloc>144</yloc>
+    </entry>
+    <entry>
+      <name>Set variables</name>
+      <description />
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename />
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>MIGRATION_OUTPUT_DIR</variable_name>
+          <variable_value>${user.home}/emr-data-migration</variable_value>
+          <variable_type>JVM</variable_type>
+        </field>
+        <field>
+          <variable_name>ACCESS_DB_FILE_LOCATION</variable_name>
+          <variable_value>${MIGRATION_OUTPUT_DIR}/access-database.mdb</variable_value>
+          <variable_type>JVM</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>48</yloc>
+    </entry>
+    <entry>
+      <name>Delete Output Folder</name>
+      <description />
+      <type>DELETE_FOLDERS</type>
+      <arg_from_previous>N</arg_from_previous>
+      <success_condition>success_if_no_errors</success_condition>
+      <limit_folders>10</limit_folders>
+      <fields>
+        <field>
+          <name>${MIGRATION_OUTPUT_DIR}</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>336</xloc>
+      <yloc>48</yloc>
+    </entry>
+    <entry>
+      <name>Create Output Folder</name>
+      <description />
+      <type>CREATE_FOLDER</type>
+      <foldername>${MIGRATION_OUTPUT_DIR}</foldername>
+      <fail_of_folder_exists>Y</fail_of_folder_exists>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>496</xloc>
+      <yloc>48</yloc>
     </entry>
   </entries>
   <hops>
-    <hop>
-      <from>START</from>
-      <to>Delete Access DB File</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
     <hop>
       <from>Delete Access DB File</from>
       <to>Create New Copy of Access DB File</to>
@@ -719,6 +765,42 @@
     <hop>
       <from>convert-t_adulto</from>
       <to>convert-t_aconselhamento</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Set variables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Set variables</from>
+      <to>Delete Output Folder</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delete Output Folder</from>
+      <to>Create Output Folder</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create Output Folder</from>
+      <to>Delete Access DB File</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

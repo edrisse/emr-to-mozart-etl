@@ -585,7 +585,7 @@ FROM t_adulto
       <method>none</method>
       <schema_name />
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/access-database.mdb</filename>
+    <filename>${ACCESS_DB_FILE_LOCATION}</filename>
     <table>t_adulto</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
