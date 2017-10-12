@@ -330,7 +330,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>704</xloc>
+      <xloc>720</xloc>
       <yloc>48</yloc>
     </entry>
     <entry>
@@ -647,33 +647,27 @@
       <yloc>48</yloc>
     </entry>
     <entry>
-      <name>Delete Output Folder</name>
-      <description />
-      <type>DELETE_FOLDERS</type>
-      <arg_from_previous>N</arg_from_previous>
-      <success_condition>success_if_no_errors</success_condition>
-      <limit_folders>10</limit_folders>
-      <fields>
-        <field>
-          <name>${MIGRATION_OUTPUT_DIR}</name>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>48</yloc>
-    </entry>
-    <entry>
       <name>Create Output Folder</name>
       <description />
       <type>CREATE_FOLDER</type>
       <foldername>${MIGRATION_OUTPUT_DIR}</foldername>
-      <fail_of_folder_exists>Y</fail_of_folder_exists>
+      <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>496</xloc>
+      <xloc>352</xloc>
+      <yloc>48</yloc>
+    </entry>
+    <entry>
+      <name>Delete Access DB File</name>
+      <description />
+      <type>DELETE_FILE</type>
+      <filename>${ACCESS_DB_FILE_LOCATION}</filename>
+      <fail_if_file_not_exists>N</fail_if_file_not_exists>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>512</xloc>
       <yloc>48</yloc>
     </entry>
   </entries>
@@ -761,15 +755,6 @@
     </hop>
     <hop>
       <from>Set variables</from>
-      <to>Delete Output Folder</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Delete Output Folder</from>
       <to>Create Output Folder</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -779,6 +764,15 @@
     </hop>
     <hop>
       <from>Create Output Folder</from>
+      <to>Delete Access DB File</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delete Access DB File</from>
       <to>Create New Copy of Access DB File</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
