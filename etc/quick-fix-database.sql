@@ -34,6 +34,15 @@ where patient_identifier.identifier_type = 2
   and patient_identifier.voided = false
   and patient_identifier.patient_id = patient.patient_id)) t);
 
+update patient set patient.voided = true where patient.patient_id in (
+select * from (select distinct patient_program.patient_id from patient_program
+join person on (person.person_id = patient_program.patient_id)
+where patient_program.program_id = 1
+  and patient_program.voided = false
+  and person.voided = false
+  and patient_program.voided = false
+  and person.birthdate >= patient_program.date_enrolled) t);
+
 --executar ate trazer 0 registos actualizados cada uma das instrucoes abaixo
 update encounter set encounter.voided = true where encounter.encounter_id in (
 select id from (select min(encounter.encounter_id) id from encounter
@@ -91,4 +100,5 @@ where encounter.voided = false
   and obs.concept_id = 5096
   and encounter.encounter_datetime >= obs.value_datetime
 ) t);
+
 
