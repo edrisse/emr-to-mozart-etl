@@ -1,8 +1,8 @@
---resolver erro ao importar bases de dados muito grandes
-set global max_allowed_packet=512*1024*1024;
+--set global max_allowed_packet=512*1024*1024;
+--mysqldump -u root -p --skip-comments openmrs > /home/natite-clean.sql
 
 --definir o codigo da unidade sanitária
-insert into global_property (property, property_value, uuid) values ('esaudemetadata.hfc', '92001', '52128fe7-0aaa-4452-9c01-124bd5cd6517');
+insert into global_property (property, property_value, uuid) values ('esaudemetadata.hfc', '1100107', '52128fe7-0aaa-4452-9c01-124bd5cd6517');
 
 --todos registos da obs devem apontar para a unidade sanitaria com mais registos
 update obs set obs.location_id = (select * from (select location_id from obs group by location_id order by count(*) desc limit 1) t);
